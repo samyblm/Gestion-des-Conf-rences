@@ -33,6 +33,7 @@ public class ArticleController {
     private final ConferenceRepository conferenceRepository;
     private final ConferenceService conferenceService;
     private final ArticleService articleService;
+
     @Autowired
     public ArticleController(AppUserService appUserService, AppUserRepository appUserRepository, ConferenceRepository conferenceRepository, ConferenceService conferenceService, ArticleService articleService) {
         this.appUserService = appUserService;
@@ -79,7 +80,7 @@ public class ArticleController {
             @RequestParam(required = false) String resume,
             @RequestParam(required = false) String mots_cle,
             @RequestParam(required = false) String theme){
-        articleService.updateArticle(articleId, name, titre, resume, mots_cle, theme);
+        articleService.updateArticle(articleId, name, titre, resume, mots_cle, theme, fileService.getFile(articleId));
     }
 
     @PostMapping(path = "/add/{confId}" ,consumes = {MediaType.MULTIPART_FORM_DATA_VALUE,MediaType.APPLICATION_OCTET_STREAM_VALUE}, produces = {MediaType.MULTIPART_FORM_DATA_VALUE,MediaType.APPLICATION_JSON_VALUE})
@@ -101,7 +102,7 @@ public class ArticleController {
         System.out.println("hdi onference"+conferen );
         String Confstrng=Long.toString(Conf);
         System.out.println("hna yafficher 0"+ Confstrng );
-        cc.addIdArticles(Confstrng);
+        cc.addIdArticles(Confstrng,cc.getidArticlesString());
         conferenceRepository.save(cc);
 //        conferen.setIdArticles(Conf);
 //        conferenceRepository.save(conferen);
@@ -114,8 +115,10 @@ public class ArticleController {
                 .path("/downloadFile/")
                 .toUriString();
 
-        article.setFile(pfile);
-        articleService.addNewArticle(article,userName,confId);
+        articleService.updateArticle(article.getId(), article.getName(),article.getTitre(),article.getResumer(),article.getMots_cle(), article.getTheme(), pfile);
+
+//        article.setFile(pfile);
+//        articleService.addNewArticle(article,userName,confId);
 
         return "fileName : " + file.getOriginalFilename() + "\n" + fileDownloadUri + pfile.getId()
                 + "\n id : " + pfile.getId()

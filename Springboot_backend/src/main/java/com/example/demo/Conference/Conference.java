@@ -46,15 +46,22 @@ public class Conference {
 //    private Long idArticles;
 
 
-    private String idArticles="";
+    private String idArticles="po";
     private String idViewers="";
 
     public List<String> getidArticles() {
         return Arrays.asList(idArticles.split(";"));
     }
 
+
+
     public List<String> getidViewers() {
         return Arrays.asList(idViewers.split(" "));
+    }
+
+
+    public String getidArticlesString() {
+        return idArticles;
     }
 
 //    public String getidViewer() {
@@ -75,8 +82,14 @@ public class Conference {
         this.idArticles = idArticles;
     }
 
-    public void addIdArticles(String idarticle) {
-        this.idArticles= this.idArticles+";"+idarticle;
+    public void addIdArticles(String idarticle,String kdim) {
+
+        if(kdim.startsWith("po")){
+            this.idArticles= idarticle;
+        }else {
+            this.idArticles= this.idArticles+";"+idarticle;
+        }
+
     }
 
     public void addidViewers(String idViewers) {

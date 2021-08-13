@@ -46,7 +46,9 @@ public class ArticleService {
                               String titre,
                               String resumer,
                               String mots_cle,
-                              String theme) {
+                              String theme,
+                              File file
+                              ) {
         Article article = articleRepository.findById(articleId).orElseThrow(() -> new IllegalStateException(
                 "student with id " + articleId + "does not exists "
         ));
@@ -69,6 +71,10 @@ public class ArticleService {
 
         if (resumer !=null && resumer.length() > 0 && !Objects.equals(article.getResumer(), resumer)){
             article.setResumer(resumer);
+        }
+
+        if (file !=null && file.getFileName().length() > 0 ){
+            article.setFile(file);
         }
 
 
