@@ -1,0 +1,324 @@
+.decoration {
+  width: 30vw;
+  height: 100vh;
+  background-image: linear-gradient(130deg, #00e790, #98fadd);
+  position: relative;
+  overflow: hidden;
+}
+
+.decoration .triangle {
+  position: absolute;
+  width: 0;
+  height: 0;
+  background-color: transparent;
+  border: 100px solid transparent;
+  border-bottom-color: rgba(255, 255, 255, 0.6);
+}
+
+.decoration .triangle-1 {
+  -webkit-transform: scaleX(0.5) scale(0.5);
+          transform: scaleX(0.5) scale(0.5);
+}
+
+.decoration .circle {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.6);
+  position: absolute;
+}
+
+.decoration .circle-1 {
+  -webkit-transform: translate(-5vw, 70vh) scale(2.5);
+          transform: translate(-5vw, 70vh) scale(2.5);
+}
+
+.decoration .circle-2 {
+  -webkit-transform: translate(10vw, 50vh) scale(0.7);
+          transform: translate(10vw, 50vh) scale(0.7);
+}
+
+.decoration .square {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+.decoration .square-1 {
+  -webkit-transform: translate(20vw, 0vh) rotateZ(70deg) scale(0.4);
+          transform: translate(20vw, 0vh) rotateZ(70deg) scale(0.4);
+}
+
+.decoration .square-2 {
+  width: 150px;
+  -webkit-transform: translate(3vw, 15vh) scale(0.3) rotateZ(20deg);
+          transform: translate(3vw, 15vh) scale(0.3) rotateZ(20deg);
+}
+
+.decoration__logo__container {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  margin: 20px;
+}
+
+.decoration__logo__img {
+  width: auto;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.decoration__main {
+  color: white;
+  width: 100%;
+  text-align: center;
+  margin-top: 100px;
+  padding: 5px;
+}
+
+.decoration__main span {
+  font-size: 2em;
+  font-weight: bolder;
+  letter-spacing: 8px;
+  display: inline-block;
+  margin-bottom: 50px;
+}
+
+.decoration__main p {
+  display: block;
+  font-size: 1.5em;
+  margin-bottom: 50px;
+}
+
+.decoration__main label {
+  display: inline-block;
+  background-color: transparent;
+  color: white;
+  border: 2px solid white;
+  border-radius: 30px;
+  width: 200px;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 1.2em;
+  font-weight: bold;
+  letter-spacing: 2px;
+  -webkit-transition: background-color 70ms linear, color 70ms linear;
+  transition: background-color 70ms linear, color 70ms linear;
+}
+
+.decoration__main label:hover {
+  background-color: white;
+  color: #27f8ba;
+}
+
+.decoration__footer {
+  position: absolute;
+  bottom: 20px;
+  margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.decoration__footer a {
+  color: white;
+  font-size: 2.2em;
+  margin: 10px 20px;
+}
+
+.form__main {
+  width: 70vw;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.form__main#signUp {
+  position: absolute;
+  display: none;
+  opacity: 0;
+}
+
+.form__main__logo__container {
+  width: 100%;
+  height: 15vh;
+  margin-top: 40px;
+}
+
+.form__main__logo__img {
+  height: 100%;
+  width: auto;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
+.form__main form {
+  height: 60%;
+  padding: auto;
+  margin: 10px auto;
+  overflow: hidden;
+}
+
+.form__main form > p {
+  display: block;
+  margin: 20px  auto 20px auto;
+  width: -webkit-fit-content !important;
+  width: -moz-fit-content !important;
+  width: fit-content !important;
+}
+
+.form__main form .radios__container {
+  margin-bottom: 30px;
+}
+
+.form__main form .radios__container input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.form__main form .radios__container input:checked + label {
+  background-color: #01ffa0;
+  -webkit-transform: scale(1.3);
+          transform: scale(1.3);
+  border-color: #01ffa0;
+}
+
+.form__main form .radios__container label {
+  margin: 5px 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  width: 15px;
+  height: 15px;
+  border: 2px solid #b3b3b3;
+}
+
+.form__main form .input-field {
+  margin-bottom: 30px;
+  position: relative;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.form__main form .input-field input {
+  background-color: #f3f3f3;
+  border: 0;
+  padding: 5px;
+  padding-left: 50px;
+  width: 35vw;
+  height: 50px;
+  border-radius: 10px;
+  background-repeat: no-repeat;
+  background-size: 1.2em;
+  background-position-y: center;
+  background-position-x: 10px;
+  font-size: 1.5em;
+  -webkit-transition: -webkit-box-shadow 70ms linear;
+  transition: -webkit-box-shadow 70ms linear;
+  transition: box-shadow 70ms linear;
+  transition: box-shadow 70ms linear, -webkit-box-shadow 70ms linear;
+  color: #5e5e5e;
+}
+
+.form__main form .input-field input::-webkit-input-placeholder {
+  font-size: .7em;
+  color: #a0a0a0;
+}
+
+.form__main form .input-field input:-ms-input-placeholder {
+  font-size: .7em;
+  color: #a0a0a0;
+}
+
+.form__main form .input-field input::-ms-input-placeholder {
+  font-size: .7em;
+  color: #a0a0a0;
+}
+
+.form__main form .input-field input::placeholder {
+  font-size: .7em;
+  color: #a0a0a0;
+}
+
+.form__main form .input-field input:focus {
+  -webkit-box-shadow: inset 0px 0px 10px #747474;
+          box-shadow: inset 0px 0px 10px #747474;
+}
+
+.form__main form button {
+  width: 200px;
+  padding: 10px;
+  border-radius: 30px;
+  border: 0;
+  background-color: #01ffa0;
+  color: white;
+  cursor: pointer;
+  margin: 20px auto;
+  display: block;
+  font-size: 1.3em;
+  -webkit-transition: background-color 70ms linear;
+  transition: background-color 70ms linear;
+}
+
+.form__main form button:hover {
+  background-color: #00e790;
+}
+
+.form__main form .forgot-password {
+  margin-top: 20px;
+}
+
+.form__main form .forgot-password > p > a {
+  color: black;
+}
+
+.form__main form .forgot-password > p > a:hover {
+  color: #00cd80;
+}
+
+.form__err {
+  display: block;
+  color: red;
+  font-weight: bold;
+  text-align: center;
+  margin: 5px;
+  font-size: .9em;
+}
+
+@media (max-width: 992px) {
+  .decoration {
+    display: none;
+  }
+  .form__main {
+    width: 100%;
+  }
+  .form__main form {
+    width: 100%;
+  }
+  .form__main form .input-field input {
+    width: 70vw;
+  }
+  .form__main form .forgot-password {
+    display: block;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    margin: 20px auto;
+  }
+  .form__main form .forgot-password__text {
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+  }
+}
+/*# sourceMappingURL=SignIn.css.map */

@@ -1,0 +1,224 @@
+$main-color: rgb(1,255,160);
+.decoration {
+    width: 30vw;
+    height: 100vh;
+    background-image: linear-gradient(130deg,darken($main-color,5%),rgb(152, 250, 221));
+    position: relative;
+    overflow: hidden;
+    .triangle {
+        position: absolute;
+        width: 0;
+        height: 0;
+        background-color: transparent;
+        border: 100px solid transparent;
+        border-bottom-color: rgba(255, 255, 255, 0.6);
+        &-1 {
+            transform: scaleX(.5) scale(.5);
+        }   
+    }
+    .circle {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.6);
+        position: absolute;
+        &-1 {
+            transform: translate(-5vw, 70vh) scale(2.5);
+        }
+        &-2 {
+            transform: translate(10vw, 50vh) scale(.7);
+        }
+    }
+    .square {
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        background-color: rgba(255, 255, 255, 0.6);
+        &-1 {
+            transform: translate(20vw, 0vh) rotateZ(70deg) scale(.4);
+        }
+        &-2 {
+            width: 150px;
+            transform: translate(3vw, 15vh) scale(.3) rotateZ(20deg); 
+        }
+    }
+    &__logo {
+        &__container {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            margin: 20px;
+        }
+        &__img {
+            width: auto;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+    &__main {
+        color: white;
+        width: 100%;
+        text-align: center;
+        margin-top: 100px;
+        padding: 5px;
+        & span {
+            font-size: 2em;
+            font-weight: bolder;
+            letter-spacing: 8px;
+            display: inline-block;
+            margin-bottom: 50px;
+        }
+        & p {
+            display: block;
+            font-size: 1.5em;
+            margin-bottom: 50px;
+        }
+        & button {
+            background-color: transparent;
+            color: white;
+            border: 1px solid white;
+            border-radius: 30px;
+            width: 200px;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 1.2em;
+            transition: background-color 70ms linear, color 70ms linear;
+            &:hover {
+                background-color: white;
+                color: rgb(39, 248, 186);
+            }
+        }
+    }
+    &__footer {
+        position: absolute;
+        bottom: 20px;
+        margin: 0 auto;
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        & a {
+            color: white;
+            font-size: 2.2em;
+            margin: 10px 20px;
+        }
+    }
+}
+.form {
+    &__main {
+        width: 70vw;
+        height: fit-content;
+        &__logo {
+            &__container {
+                width: 100%;
+                height: 15vh;
+                margin-top: 50px;
+                // margin-bottom: 50px;
+            }
+            &__img {
+                height: 100%;
+                width: auto;
+                object-fit: contain;
+            }
+        }
+        & form {
+            // width: 50%;
+            height: 60%;
+            padding: auto;
+            margin: 10px auto;
+            & > p {
+                display: block;
+                margin: 40px auto;
+                width: fit-content !important;
+            }
+            .input-field {
+                margin-bottom: 30px;
+                position: relative;
+                width: fit-content;
+                height: fit-content;
+                input {
+                    background-color: rgb(243, 243, 243);
+                    border: 0;
+                    padding: 5px;
+                    padding-left: 50px;
+                    width: 35vw;
+                    height: 50px;
+                    border-radius: 10px;
+                    background-repeat: no-repeat;
+                    background-size: 1.2em;
+                    background-position-y: center;
+                    background-position-x: 10px;
+                    font-size: 1.5em;
+                    transition: box-shadow 70ms linear;
+                    color: rgb(82, 82, 82);
+                    &::placeholder {
+                        font-size: .7em;
+                        color: rgb(192, 192, 192);
+                    }
+                    &::auto-fill {
+                        background-color: red;
+                    }
+                    &:focus {
+                        box-shadow: inset 0px 0px 10px rgb(116, 116, 116);
+                    }
+                }
+                // label {
+                //     position: absolute;
+                //     font-size: 1.3em;
+                //     top: calc(1.3em - 50%);
+                // }
+            }
+            button {
+                width: 200px;
+                padding: 10px;
+                border-radius: 30px;
+                border: 0;
+                background-color: $main-color;
+                color: white;
+                cursor: pointer;
+                margin: 40px auto;
+                display: block;
+                font-size: 1.3em;
+                transition: background-color 70ms linear;
+                &:hover {
+                    background-color: darken($main-color, 5%);
+                }
+            }
+            .forgot-password {
+                margin-top: 20px;
+                & > p > a {
+                    color: black;
+                    &:hover {
+                        color: darken($main-color,10%);
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media(max-width: 992px) {
+    .decoration {
+        display: none;
+    }
+    .form {
+        &__main {
+            width: 100%;
+            & form {
+                width: 100%;
+                .input-field {
+                    input {
+                        width: 70vw;
+                    }
+                }
+                .forgot-password {
+                    display: block;
+                    width: fit-content;
+                    margin: 20px auto;
+                    &__text {
+                        width: fit-content;
+                    }
+                }
+            }
+        }
+    }
+}

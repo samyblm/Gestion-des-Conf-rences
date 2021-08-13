@@ -1,0 +1,20 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.flex-container {
+    display: flex;
+    &.col {
+        flex-direction: column;
+        &.hcenter {
+            align-items: center;
+        }
+    }
+    &.hcenter {
+        justify-content: center;
+    }
+    &.vcenter {
+        align-items: center;
+    }
+}
