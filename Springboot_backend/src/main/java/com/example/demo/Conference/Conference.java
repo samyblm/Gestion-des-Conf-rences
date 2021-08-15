@@ -2,17 +2,17 @@ package com.example.demo.Conference;
 
 
 import com.example.demo.Articles.Article;
+import com.example.demo.Comment.Comment;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
 import static java.util.Collections.*;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -150,6 +150,22 @@ public class Conference {
     }
 
     public Conference() {
+    }
+    @JsonIgnore
+    @OneToMany(mappedBy = "conference", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Comment> comments;
+
+
+    public List<Comment> getComments() {
+        return comments == null ? null : new ArrayList<>(comments);
+    }
+
+    public void setComments(List<Comment> comments) {
+        if (comments == null) {
+            this.comments = null;
+        } else {
+            this.comments = Collections.unmodifiableList(comments);
+        }
     }
 
 

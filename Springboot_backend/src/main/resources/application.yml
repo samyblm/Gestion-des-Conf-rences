@@ -12,8 +12,8 @@ server:
 
 spring:
   datasource:
-    password: samy
-    url: jdbc:postgresql://localhost:5432/registration
+    password: 03042000S
+    url: jdbc:postgresql://localhost:5432/article
     username: postgres
   jpa:
     hibernate:
@@ -23,10 +23,14 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
     show-sql: true
+  jackson:
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
+    time-zone: UTC
 
   mail:
     host: localhost
-    port: 1025
+    port: 8080
     username: sam
     password: sam
 

@@ -1,5 +1,7 @@
 package com.example.demo.AppUser;
 
+import com.example.demo.Comment.Comment;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,10 +11,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 @Getter
 @Setter
@@ -132,4 +131,21 @@ public class AppUser implements UserDetails {
             return false;
         }
     }
+    @JsonIgnore
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Comment> comments;
+
+    public List<Comment> getComments() {
+        return comments == null ? null : new ArrayList<>(comments);
+    }
+
+    public void setComments(List<Comment> comments) {
+
+        if (comments == null) {
+            this.comments = null;
+        } else {
+            this.comments = Collections.unmodifiableList(comments);
+        }
+    }
+
 }

@@ -21,7 +21,7 @@ public class AppUserService implements UserDetailsService {
 
     private final static String Credentials_NOT_FOUND_MSG="Credentials erronneer";
 
-    private  final AppUserRepository appUserRepository;
+    private  AppUserRepository appUserRepository;
 //    private  final AppUsernameRepository appUsernameRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final ConfirmationTokenService confirmationTokenService;

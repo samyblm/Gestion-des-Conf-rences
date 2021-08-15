@@ -28,7 +28,7 @@ public class RegistrationService {
     private EmailValidator emailValidator;
     private final AppUserService appUserService;
     private final ConfirmationTokenService confirmationTokenService;
-    private  final AppUserRepository appUserRepository;
+    private   AppUserRepository appUserRepository;
     private final EmailSender emailSender;
 
     public Map<String, String> register(RegistrationRequest request) {

@@ -17,7 +17,7 @@ public class ForgetPAssController {
         private final ForgetPassService forgetPassService;
         private final AppUserService appUserService;
         private final BCryptPasswordEncoder bCryptPasswordEncoder;
-        private  final AppUserRepository appUserRepository;
+        private   AppUserRepository appUserRepository;
 
 
         @CrossOrigin
