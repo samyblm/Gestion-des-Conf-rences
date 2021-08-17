@@ -7,9 +7,11 @@ import com.example.demo.AppUser.AppUserRepository;
 import com.example.demo.AppUser.AppUserService;
 import com.example.demo.Registration.JwtUtility;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
@@ -47,6 +49,12 @@ public class ConferenceController {
         String token = null;
         String userName = null;
 
+        List<String> viewers= conference.getidViewers();
+
+
+
+
+
         if(null != authorization && authorization.startsWith("Bearer ")) {
             token = authorization.substring(7);
             userName = jwtTokenUtil.getUsernameFromToken(token);
@@ -57,9 +65,22 @@ public class ConferenceController {
 
         Long Conf= conference.getId();
         userObj.setIdConf(Conf);
+        userObj.setconferencier(true);
         appUserRepository.save(userObj);
         System.out.println(Conf);
         System.out.println(userObj);
+
+        for (String value:viewers
+        ) {
+            Optional<AppUser> userObjj = appUserRepository.findByEmail(value);
+            AppUser userap= userObjj.orElseThrow(()-> new IllegalStateException("user does not exist"));
+            System.out.println(userap + "1hda sam ya sam blk user");
+            System.out.println(conference.getId() + "1hda sam ya sam blk 0");
+            System.out.println(Long.toString(Conf) + "2hda sam ya sam blk 0");
+            userap.addidConfInvtforrevieuw(Long.toString(Conf),userap.getidConfInvtforrevieuwString());
+            appUserRepository.save(userap);
+
+        }
 
 
     }
@@ -83,6 +104,38 @@ public class ConferenceController {
             @RequestParam(required = false) boolean validity
     ){
         conferenceService.updateConference(conferenceId,nom,deadline,company_name,resumer,application_condition,validity);
+    }
+
+    @GetMapping(path = "rev/{conferenceId}")
+    public String  getrev(@PathVariable("conferenceId") Long conferenceId){
+
+        String map="{"+ "\n" ;
+        Conference conf=conferenceService.getConferences(conferenceId).orElseThrow(()-> new IllegalStateException("Confe dont exist"));
+
+        for (String value:conf.getidViewersFinal()
+        ) {
+            System.out.println(value);
+            map=map+ '"' + "Accepted" + '"' + ":" +'"'+ value+'"'+","+ "\n";
+        }
+        for (String value:conf.getidViewers()
+        ) {
+            System.out.println(value);
+            map=map +'"'+ "Waiting"+'"' + ":" +'"'+ value+'"'+","+ "\n";
+        }
+        for (String value:conf.getidViewersRefus()
+        ) {
+            System.out.println(value);
+            map=map +'"'+ "Refused" +'"'+ ":" +'"'+ value+'"'+","  ;
+        }
+
+
+        map = map.substring(0, map.length() -1);
+        map= map + "\n";
+        map=map + "}" ;
+
+        return map;
+
+
     }
 
 

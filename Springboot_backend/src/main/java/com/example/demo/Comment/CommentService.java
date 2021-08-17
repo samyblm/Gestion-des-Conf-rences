@@ -59,6 +59,13 @@ public class CommentService {
 		return new PagedResponse<>(comments.getContent(), comments.getNumber(), comments.getSize(),
         comments.getTotalElements(), comments.getTotalPages(), comments.isLast());
     }
+
+
+	public java.util.List<Comment> getAllComment(Long conferenceId) {
+		java.util.List<com.example.demo.Comment.Comment> comments= commentRepository.findByConferenceIdEquals(conferenceId);;
+		return  comments ;
+	}
+
     
 	public Comment addComment(CommentRequest commentRequest, Long conferenceId, AppUser currentUser) {
 		Conference conference = conferenceRepository.findById(conferenceId)

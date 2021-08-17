@@ -35,6 +35,19 @@ public class CommentController {
 
     return new ResponseEntity<>(allComments,HttpStatus.OK);
     }
+
+	@GetMapping("/get")
+	public ResponseEntity<java.util.List<Comment>> getAllComment(@PathVariable(name = "conferenceId") Long conferenceId) {
+		java.util.List<Comment> allComments =  commentService.getAllComment(conferenceId);
+
+		return new ResponseEntity(allComments,HttpStatus.OK);
+	}
+
+
+
+
+
+
     @PostMapping
 	@PreAuthorize("hasRole('USER')")
 	public ResponseEntity<Comment> addComment(@Validated @RequestBody CommentRequest commentRequest,
@@ -43,6 +56,9 @@ public class CommentController {
 
 		return new ResponseEntity<>(newComment, HttpStatus.CREATED);
 	}
+
+
+
 
 	@GetMapping("/{id}")
 	public ResponseEntity<Comment> getComment(@PathVariable(name = "conferenceId") Long conferenceId,

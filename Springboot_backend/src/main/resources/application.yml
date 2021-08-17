@@ -12,8 +12,8 @@ server:
 
 spring:
   datasource:
-    password: 03042000S
-    url: jdbc:postgresql://localhost:5432/article
+    password: samy
+    url: jdbc:postgresql://localhost:5432/registration
     username: postgres
   jpa:
     hibernate:
@@ -30,7 +30,7 @@ spring:
 
   mail:
     host: localhost
-    port: 8080
+    port: 1025
     username: sam
     password: sam
 

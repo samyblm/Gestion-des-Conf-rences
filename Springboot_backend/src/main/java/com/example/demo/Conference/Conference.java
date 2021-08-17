@@ -48,6 +48,8 @@ public class Conference {
 
     private String idArticles="po";
     private String idViewers="";
+    private String idViewersFinal="po";
+    private String idViewersRefus="po";
 
     public List<String> getidArticles() {
         return Arrays.asList(idArticles.split(";"));
@@ -60,9 +62,51 @@ public class Conference {
     }
 
 
+
+
+    public List<String> getidViewersRefus() {
+        return Arrays.asList(idViewersRefus.split(" "));
+    }
+
+    public void addidViewersRefus(String idViewersRefus,String kdim) {
+        if(kdim.startsWith("po")){
+            this.idViewersRefus= " " +idViewersRefus;
+        }else {
+            this.idViewersRefus= this.idViewersRefus+" "+idViewersRefus;
+        }
+
+    }
+    public String getidViewersRefusString() {
+        return idViewersRefus;
+    }
+
+
+
+
+
+
+    public List<String> getidViewersFinal() {
+        return Arrays.asList(idViewersFinal.split(" "));
+    }
+
+    public void addidViewersFinal(String idViewersFinal,String kdim) {
+        if(kdim.startsWith("po")){
+            this.idViewersFinal= idViewersFinal;
+        }else {
+            this.idViewersFinal= this.idViewersFinal+" "+idViewersFinal;
+        }
+
+    }
+    public String getidViewersFinalString() {
+        return idViewersFinal;
+    }
+
+
     public String getidArticlesString() {
         return idArticles;
     }
+
+
 
 //    public String getidViewer() {
 //        return idViewers;
@@ -99,6 +143,14 @@ public class Conference {
 //        public void setIdArticles(Long idArticles) {
 //      this.idArticles = idArticles;
 //    }
+
+    public void setidViewers(String idViewers) {
+        this.idViewers = idViewers;
+    }
+
+    public String getidViewersString() {
+      return   this.idViewers ;
+    }
 
 
 

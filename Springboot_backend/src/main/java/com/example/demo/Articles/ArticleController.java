@@ -107,6 +107,7 @@ public class ArticleController {
 //        conferen.setIdArticles(Conf);
 //        conferenceRepository.save(conferen);
         userObj.addIdArticles(Confstrng);
+        userObj.setchercheur(true);
         appUserRepository.save(userObj);
         System.out.println(Conf);
         System.out.println(userObj);

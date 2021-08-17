@@ -37,6 +37,89 @@ public class AppUser implements UserDetails {
     private String password;
     private Long idConf;
     private String idArticles="";
+    private Boolean chercheur=false;
+    private Boolean conferencier=false;
+    private Boolean reviewer=false;
+    private String idConfInvtforrevieuw="po";
+    private String idConfInvtConfirmerev="po";
+
+
+
+
+    public List<String> getidConfInvtConfirmerev() {
+        return Arrays.asList(idConfInvtConfirmerev.split(" "));
+    }
+
+    public void setidConfInvtConfirmerev(String idConfInvtConfirmerev) {
+        this.idConfInvtConfirmerev=idConfInvtConfirmerev;
+    }
+
+    public String getidConfInvtConfirmerevString() {
+        return idConfInvtConfirmerev;
+    }
+
+    public void addidConfInvtConfirmerev(String idConfInvtConfirmerev,String kdim) {
+
+        if(kdim.startsWith("po")){
+            this.idConfInvtConfirmerev= idConfInvtConfirmerev;
+        }else {
+            this.idConfInvtConfirmerev= this.idConfInvtConfirmerev+" "+idConfInvtConfirmerev;
+        }
+
+    }
+
+
+
+
+
+
+
+
+    public Boolean  getchercheur() {
+        return chercheur;
+    }
+    public Boolean  getconferencier() {
+        return conferencier;
+    }
+    public Boolean  getreviewer() {
+        return reviewer;
+    }
+    public void setchercheur(Boolean chercheur) {
+        this.chercheur = chercheur;
+    }
+    public void setconferencier(Boolean conferencier) {
+        this.conferencier = conferencier;
+    }
+    public void setreviewer(Boolean reviewer) {
+        this.reviewer = reviewer;
+    }
+
+
+    public List<String> getidConfInvtforrevieuw() {
+        return Arrays.asList(idConfInvtforrevieuw.split(" "));
+    }
+
+    public void setidConfInvtforrevieuw(String idConfInvtforrevieuw) {
+         this.idConfInvtforrevieuw=idConfInvtforrevieuw;
+    }
+
+    public String getidConfInvtforrevieuwString() {
+        return idConfInvtforrevieuw;
+    }
+
+
+    public void addidConfInvtforrevieuw(String idConfInvtforrevieuw,String kdim) {
+
+        if(kdim.startsWith("po")){
+            this.idConfInvtforrevieuw=" "+idConfInvtforrevieuw;
+        }else {
+            this.idConfInvtforrevieuw= this.idConfInvtforrevieuw+" "+idConfInvtforrevieuw;
+        }
+
+    }
+
+
+
 
     public List<String> getidArticles() {
         return Arrays.asList(idArticles.split(";"));
