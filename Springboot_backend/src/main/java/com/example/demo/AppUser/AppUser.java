@@ -37,11 +37,39 @@ public class AppUser implements UserDetails {
     private String password;
     private Long idConf;
     private String idArticles="";
+    private String speciality;
+    private String location;
     private Boolean chercheur=false;
     private Boolean conferencier=false;
     private Boolean reviewer=false;
     private String idConfInvtforrevieuw="po";
     private String idConfInvtConfirmerev="po";
+    private String getIdArticlesCorrig="";
+
+
+    public String getspecialite(){
+        return speciality;
+    }
+
+    public String getSpeciality(){return speciality;}
+
+    public void setspecialite(String speciality){
+        this.speciality=speciality;
+    }
+
+
+
+    public List<String> getIdArticlesCorrig() {
+        return Arrays.asList(idConfInvtConfirmerev.split(" "));
+    }
+
+    public String getIdArticlesCorrigString() {
+        return getIdArticlesCorrig;
+    }
+    public void setIdArticlesCorrigString(String getIdArticlesCorrig) {
+        this.getIdArticlesCorrig=getIdArticlesCorrig;
+    }
+
 
 
 
@@ -151,13 +179,17 @@ public class AppUser implements UserDetails {
                    String lastName,
                    String email,
                    String password,
+                   String speciality,
+                   String location,
                    AppUserRole appUserRole
                   ) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
+        this.speciality=speciality;
         this.appUserRole = appUserRole;
+        this.location=location;
 
 
     }

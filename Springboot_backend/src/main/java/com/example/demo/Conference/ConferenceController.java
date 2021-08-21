@@ -7,11 +7,9 @@ import com.example.demo.AppUser.AppUserRepository;
 import com.example.demo.AppUser.AppUserService;
 import com.example.demo.Registration.JwtUtility;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,11 +23,15 @@ public class ConferenceController {
     private final ConferenceService conferenceService;
     private final AppUserService appUserService;
     private final AppUserRepository appUserRepository;
+    private final DistrebuteService distrebuteService;
 
-    public ConferenceController(ConferenceService conferenceService, AppUserService appUserService, AppUserRepository appUserRepository) {
+
+    @Autowired
+    public ConferenceController(ConferenceService conferenceService, AppUserService appUserService, AppUserRepository appUserRepository, DistrebuteService distrebuteService) {
         this.conferenceService = conferenceService;
         this.appUserService = appUserService;
         this.appUserRepository = appUserRepository;
+        this.distrebuteService = distrebuteService;
     }
 
     @GetMapping
@@ -40,6 +42,12 @@ public class ConferenceController {
     @GetMapping(path = "{conferenceId}")
     public Optional<Conference> getConference(@PathVariable  Long conferenceId){
         return conferenceService.getConferences(conferenceId);
+    }
+
+
+    @PostMapping(path = "dist/{conferenceId}")
+    public void distrubute(@PathVariable  Long conferenceId){
+             distrebuteService.Distrubute(conferenceId);
     }
 
 

@@ -52,7 +52,7 @@ public class Conference {
     private String idViewersRefus="po";
 
     public List<String> getidArticles() {
-        return Arrays.asList(idArticles.split(";"));
+        return Arrays.asList(idArticles.split(" "));
     }
 
 
@@ -131,7 +131,7 @@ public class Conference {
         if(kdim.startsWith("po")){
             this.idArticles= idarticle;
         }else {
-            this.idArticles= this.idArticles+";"+idarticle;
+            this.idArticles= this.idArticles+" "+idarticle;
         }
 
     }
