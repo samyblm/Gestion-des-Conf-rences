@@ -107,13 +107,49 @@ public class DistrebuteService {
 
             if (R >= A) {
 
-                for (String var : revspec) {
-                        Boolean verify = false;
+                for (String var : new ArrayList<>(revspec)) {
+                    Boolean verify = false;
 
-                        if (!List.isEmpty()) {
+                    if (!List.isEmpty()) {
 
+                        for (String value : new ArrayList<>(List)) {
+                            if (verify == false) {
+                                String nameRev = var;
+                                AppUser apuser = appUserRepository.findByEmail(nameRev)
+                                        .orElseThrow(() -> new IllegalStateException("reviewer yexestish"));
+                                String toadd = apuser.getIdArticlesCorrigString();
+                                AppUser chercheuruse = appUserRepository.findById(Long.parseLong(value))
+                                        .orElseThrow(() -> new IllegalStateException("reviewer yexestish"));
+                                String idarticle = value;
 
-                            for (String value : List) {
+                                if (chercheuruse.getLocation() != apuser.getLocation()) {
+
+                                    if (toadd == "") {
+                                        toadd = idarticle;
+                                    } else {
+                                        toadd = toadd + idarticle;
+                                    }
+                                    List.remove(idarticle);
+                                    System.out.println("List toadd" + toadd);
+                                    String toaddtest = apuser.getTest();
+                                    if (toaddtest == "") {
+                                        toaddtest = idarticle;
+                                    } else {
+                                        toaddtest = toaddtest + idarticle;
+                                    }
+                                    System.out.println("AAAAAAA");
+                                    apuser.setTest(toaddtest);
+                                    apuser.setIdArticlesCorrigString(toadd);
+                                    appUserRepository.save(apuser);
+                                    verify = true;
+
+                                }
+                            }
+                        }
+
+                        if (!articleid.isEmpty() && verify == false) {
+
+                            for (String value : new ArrayList<>(articleid)) {
                                 if (verify == false) {
                                     String nameRev = var;
                                     AppUser apuser = appUserRepository.findByEmail(nameRev)
@@ -131,141 +167,191 @@ public class DistrebuteService {
                                             toadd = toadd + idarticle;
                                         }
                                         articleid.remove(idarticle);
+                                        String toaddtest = apuser.getTest();
+                                        if (toaddtest == "") {
+                                            toaddtest = idarticle;
+                                        } else {
+                                            toaddtest = toaddtest + idarticle;
+                                        }
+                                        apuser.setTest(toaddtest);
+                                        System.out.println("BBBBBBBBBBBB");
                                         System.out.println("List toadd" + toadd);
                                         apuser.setIdArticlesCorrigString(toadd);
                                         appUserRepository.save(apuser);
                                         verify = true;
 
+                                    } else {
+                                        List.add(idarticle);
+                                        articleid.remove(idarticle);
                                     }
+
                                 }
                             }
 
-                             if(!articleid.isEmpty() && verify==false){
+                        }
 
-                                 for (String value : articleid) {
-                                     if (verify == false) {
-                                         String nameRev = var;
-                                         AppUser apuser = appUserRepository.findByEmail(nameRev)
-                                                 .orElseThrow(() -> new IllegalStateException("reviewer yexestish"));
-                                         String toadd = apuser.getIdArticlesCorrigString();
-                                         AppUser chercheuruse = appUserRepository.findById(Long.parseLong(value))
-                                                 .orElseThrow(() -> new IllegalStateException("reviewer yexestish"));
-                                         String idarticle = value;
+                    } else {
+                        if (!articleid.isEmpty()) {
+                            for (String value : new ArrayList<>(articleid)) {
+                                if (verify == false) {
+                                    String nameRev = var;
+                                    AppUser apuser = appUserRepository.findByEmail(nameRev)
+                                            .orElseThrow(() -> new IllegalStateException("reviewer yexestish"));
+                                    String toadd = apuser.getIdArticlesCorrigString();
+                                    AppUser chercheuruse = appUserRepository.findById(Long.parseLong(value))
+                                            .orElseThrow(() -> new IllegalStateException("reviewer yexestish"));
+                                    String idarticle = value;
 
-                                         if (chercheuruse.getLocation() != apuser.getLocation()) {
+                                    if (chercheuruse.getLocation() != apuser.getLocation()) {
 
-                                             if (toadd == "") {
-                                                 toadd = idarticle;
-                                             } else {
-                                                 toadd = toadd + idarticle;
-                                             }
-                                             articleid.remove(idarticle);
-                                             System.out.println("List toadd" + toadd);
-                                             apuser.setIdArticlesCorrigString(toadd);
-                                             appUserRepository.save(apuser);
-                                             verify = true;
-
-                                         } else {
-                                             List.add(idarticle);
-                                             articleid.remove(idarticle);
-                                         }
-
-                                     }
-                                 }
-
-                             }
-
-                        } else {
-                            if (!articleid.isEmpty()) {
-                                for (String value : articleid) {
-                                    if (verify == false) {
-                                        String nameRev = var;
-                                        AppUser apuser = appUserRepository.findByEmail(nameRev)
-                                                .orElseThrow(() -> new IllegalStateException("reviewer yexestish"));
-                                        String toadd = apuser.getIdArticlesCorrigString();
-                                        AppUser chercheuruse = appUserRepository.findById(Long.parseLong(value))
-                                                .orElseThrow(() -> new IllegalStateException("reviewer yexestish"));
-                                        String idarticle = value;
-
-                                        if (chercheuruse.getLocation() != apuser.getLocation()) {
-
-                                            if (toadd == "") {
-                                                toadd = idarticle;
-                                            } else {
-                                                toadd = toadd + idarticle;
-                                            }
-                                            articleid.remove(idarticle);
-                                            System.out.println("List toadd" + toadd);
-                                            apuser.setIdArticlesCorrigString(toadd);
-                                            appUserRepository.save(apuser);
-                                            verify = true;
-
+                                        if (toadd == "") {
+                                            toadd = idarticle;
                                         } else {
-                                            List.add(idarticle);
-                                            articleid.remove(idarticle);
+                                            toadd = toadd + idarticle;
                                         }
+                                        articleid.remove(idarticle);
+                                        String toaddtest = apuser.getTest();
+                                        if (toaddtest == "") {
+                                            toaddtest = idarticle;
+                                        } else {
+                                            toaddtest = toaddtest + idarticle;
+                                        }
+                                        apuser.setTest(toaddtest);
+                                        System.out.println("CCCCCCC");
+                                        System.out.println("List toadd" + toadd);
+                                        apuser.setIdArticlesCorrigString(toadd);
+                                        appUserRepository.save(apuser);
+                                        verify = true;
 
+                                    } else {
+                                        List.add(idarticle);
+                                        articleid.remove(idarticle);
                                     }
+
                                 }
                             }
                         }
-
-                }
-
-            } else {
-
-                int AdivR = A / R;
-                int AmodR = A % R;
-
-                for (String var : revspec) {
-
-                    AppUser apuser = appUserRepository.findByEmail(var)
-                            .orElseThrow(() -> new IllegalStateException("reviewer yexestish"));
-                    String toadd = apuser.getIdArticlesCorrigString();
-
-                    for (int i = 0; i < AdivR; i++) {
-
-                        AppUser chercheuruse = appUserRepository.findById(Long.parseLong(articleid.get(i)))
-                                .orElseThrow(() -> new IllegalStateException("reviewer yexestish"));
-
-                        String idarticle = articleid.get(i);
-                        if (toadd == "") {
-                            toadd = idarticle;
-                        } else {
-                            toadd = toadd + idarticle;
-                        }
-                        apuser.setIdArticlesCorrigString(toadd);
-                        appUserRepository.save(apuser);
-
                     }
-                    for (int i = 0; i < AdivR; i++) {
-                        articleid.remove(i);
-                    }
+                    int i = 0;
+                    while (verify == false && articleid.isEmpty() && revspec.get(i) != var) {
+                        System.out.println("test 1 boucle ");
+                        System.out.println(i);
+                        System.out.println(revspec.get(i));
+                        System.out.println("test 1 end ");
 
-                }
-
-                if (AmodR != 0) {
-
-                    for (int i = 0; i < AmodR; i++) {
-                        String nameRev = revspec.get(i);
-                        String idarticle = articleid.get(i);
+                        String nameRev = var;
                         AppUser apuser = appUserRepository.findByEmail(nameRev)
                                 .orElseThrow(() -> new IllegalStateException("reviewer yexestish"));
-                        String toadd = apuser.getIdArticlesCorrigString();
-                        if (toadd == "") {
-                            toadd = idarticle;
-                        } else {
-                            toadd = toadd + idarticle;
+                        AppUser apuser2 = appUserRepository.findByEmail(revspec.get(i))
+                                .orElseThrow(() -> new IllegalStateException("reviewer yexestish"));
+                        AppUser chercheuruse2 = appUserRepository.findById(Long.parseLong(apuser2.getTest()))
+                                .orElseThrow(() -> new IllegalStateException("raihana tesssst"));
+                        System.out.println("test");
+                        System.out.println(!apuser2.getTest().equals(""));
+                        if (!apuser2.getTest().equals("")) {
+                            System.out.println("location");
+                            System.out.println(chercheuruse2.getLocation() != apuser.getLocation());
+                            if (chercheuruse2.getLocation() != apuser.getLocation()) {
+                                for (String variable : new ArrayList<>(List)) {
+                                    AppUser chercheuruse3 = appUserRepository.findById(Long.parseLong(variable))
+                                            .orElseThrow(() -> new IllegalStateException("reviewer yexestish"));
+                                    if (chercheuruse3.getLocation() != apuser2.getLocation() && verify == false) {
+                                        String change = apuser2.getTest();
+                                        apuser.setTest(change);
+                                        String toaddtest = apuser.getGetIdArticlesCorrig();
+                                        if (toaddtest == "") {
+                                            toaddtest = change;
+                                        } else {
+                                            toaddtest = toaddtest + change;
+                                        }
+                                        apuser.setIdArticlesCorrigString(toaddtest);
+                                        appUserRepository.save(apuser);
+                                        List.remove(variable);
+                                        System.out.println("DDDDDDD");
+                                        apuser2.setTest(variable);
+                                        String teststring = apuser2.getIdArticlesCorrigString();
+                                        String sttr="";
+                                        if (teststring == "") {
+                                            sttr = variable;
+                                        } else {
+                                            sttr=teststring.replaceAll(change, variable);
+
+                                        }
+
+                                        apuser2.setIdArticlesCorrigString(sttr);
+
+                                        // apuser2.getIdArticlesCorrig().remove(change);
+                                        appUserRepository.save(apuser2);
+                                        verify = true;
+                                    }
+
+                                }
+
+                            }
+
                         }
-                        System.out.println("List toadd" + toadd);
-                        apuser.setIdArticlesCorrigString(toadd);
-                        appUserRepository.save(apuser);
+                        i++;
 
                     }
 
                 }
-
             }
+
+            // else {
+            //
+            // int AdivR = A / R;
+            // int AmodR = A % R;
+            //
+            // for (String var : revspec) {
+            //
+            // AppUser apuser = appUserRepository.findByEmail(var)
+            // .orElseThrow(() -> new IllegalStateException("reviewer yexestish"));
+            // String toadd = apuser.getIdArticlesCorrigString();
+            //
+            // for (int i = 0; i < AdivR; i++) {
+            //
+            // AppUser chercheuruse =
+            // appUserRepository.findById(Long.parseLong(articleid.get(i)))
+            // .orElseThrow(() -> new IllegalStateException("reviewer yexestish"));
+            //
+            // String idarticle = articleid.get(i);
+            // if (toadd == "") {
+            // toadd = idarticle;
+            // } else {
+            // toadd = toadd + idarticle;
+            // }
+            // apuser.setIdArticlesCorrigString(toadd);
+            // appUserRepository.save(apuser);
+            //
+            // }
+            // for (int i = 0; i < AdivR; i++) {
+            // articleid.remove(i);
+            // }
+            //
+            // }
+            //
+            // if (AmodR != 0) {
+            //
+            // for (int i = 0; i < AmodR; i++) {
+            // String nameRev = revspec.get(i);
+            // String idarticle = articleid.get(i);
+            // AppUser apuser = appUserRepository.findByEmail(nameRev)
+            // .orElseThrow(() -> new IllegalStateException("reviewer yexestish"));
+            // String toadd = apuser.getIdArticlesCorrigString();
+            // if (toadd == "") {
+            // toadd = idarticle;
+            // } else {
+            // toadd = toadd + idarticle;
+            // }
+            // System.out.println("List toadd" + toadd);
+            // apuser.setIdArticlesCorrigString(toadd);
+            // appUserRepository.save(apuser);
+            //
+            // }
+            //
+            // }
+            //
+            // }
 
         }
     }

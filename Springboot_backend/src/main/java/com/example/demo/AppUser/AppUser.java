@@ -20,44 +20,49 @@ import java.util.*;
 @Entity
 public class AppUser implements UserDetails {
 
-    @SequenceGenerator(
-            name = "user_sequence",
-            sequenceName = "use_sequence",
-            allocationSize = 1
-    )
+    @SequenceGenerator(name = "user_sequence", sequenceName = "use_sequence", allocationSize = 1)
     @Id
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "user_sequence"
-    )
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_sequence")
     private Long id;
     private String firstName;
     private String lastName;
     private String email;
     private String password;
     private Long idConf;
-    private String idArticles="";
+    private String idArticles = "";
     private String speciality;
     private String location;
-    private Boolean chercheur=false;
-    private Boolean conferencier=false;
-    private Boolean reviewer=false;
-    private String idConfInvtforrevieuw="po";
-    private String idConfInvtConfirmerev="po";
-    private String getIdArticlesCorrig="";
+    private Boolean chercheur = false;
+    private Boolean conferencier = false;
+    private Boolean reviewer = false;
+    private String idConfInvtforrevieuw = "po";
+    private String idConfInvtConfirmerev = "po";
+    private String getIdArticlesCorrig = "";
+    private String test = "";
 
+    public String getTest() {
+        return test;
+    }
 
-    public String getspecialite(){
+    public void setTest(String test) {
+        this.test = test;
+    }
+
+    public List<String> getTestarray() {
+        return Arrays.asList(test.split(" "));
+    }
+
+    public String getspecialite() {
         return speciality;
     }
 
-    public String getSpeciality(){return speciality;}
-
-    public void setspecialite(String speciality){
-        this.speciality=speciality;
+    public String getSpeciality() {
+        return speciality;
     }
 
-
+    public void setspecialite(String speciality) {
+        this.speciality = speciality;
+    }
 
     public List<String> getIdArticlesCorrig() {
         return Arrays.asList(idConfInvtConfirmerev.split(" "));
@@ -66,98 +71,89 @@ public class AppUser implements UserDetails {
     public String getIdArticlesCorrigString() {
         return getIdArticlesCorrig;
     }
+
     public void setIdArticlesCorrigString(String getIdArticlesCorrig) {
-        this.getIdArticlesCorrig=getIdArticlesCorrig;
+        this.getIdArticlesCorrig = getIdArticlesCorrig;
     }
-
-
-
-
 
     public List<String> getidConfInvtConfirmerev() {
         return Arrays.asList(idConfInvtConfirmerev.split(" "));
     }
 
     public void setidConfInvtConfirmerev(String idConfInvtConfirmerev) {
-        this.idConfInvtConfirmerev=idConfInvtConfirmerev;
+        this.idConfInvtConfirmerev = idConfInvtConfirmerev;
     }
 
     public String getidConfInvtConfirmerevString() {
         return idConfInvtConfirmerev;
     }
 
-    public void addidConfInvtConfirmerev(String idConfInvtConfirmerev,String kdim) {
+    public void addidConfInvtConfirmerev(String idConfInvtConfirmerev, String kdim) {
 
-        if(kdim.startsWith("po")){
-            this.idConfInvtConfirmerev= idConfInvtConfirmerev;
-        }else {
-            this.idConfInvtConfirmerev= this.idConfInvtConfirmerev+" "+idConfInvtConfirmerev;
+        if (kdim.startsWith("po")) {
+            this.idConfInvtConfirmerev = idConfInvtConfirmerev;
+        } else {
+            this.idConfInvtConfirmerev = this.idConfInvtConfirmerev + " " + idConfInvtConfirmerev;
         }
 
     }
 
-
-
-
-
-
-
-
-    public Boolean  getchercheur() {
+    public Boolean getchercheur() {
         return chercheur;
     }
-    public Boolean  getconferencier() {
+
+    public Boolean getconferencier() {
         return conferencier;
     }
-    public Boolean  getreviewer() {
+
+    public Boolean getreviewer() {
         return reviewer;
     }
+
     public void setchercheur(Boolean chercheur) {
         this.chercheur = chercheur;
     }
+
     public void setconferencier(Boolean conferencier) {
         this.conferencier = conferencier;
     }
+
     public void setreviewer(Boolean reviewer) {
         this.reviewer = reviewer;
     }
-
 
     public List<String> getidConfInvtforrevieuw() {
         return Arrays.asList(idConfInvtforrevieuw.split(" "));
     }
 
     public void setidConfInvtforrevieuw(String idConfInvtforrevieuw) {
-         this.idConfInvtforrevieuw=idConfInvtforrevieuw;
+        this.idConfInvtforrevieuw = idConfInvtforrevieuw;
     }
 
     public String getidConfInvtforrevieuwString() {
         return idConfInvtforrevieuw;
     }
 
+    public void addidConfInvtforrevieuw(String idConfInvtforrevieuw, String kdim) {
 
-    public void addidConfInvtforrevieuw(String idConfInvtforrevieuw,String kdim) {
-
-        if(kdim.startsWith("po")){
-            this.idConfInvtforrevieuw=" "+idConfInvtforrevieuw;
-        }else {
-            this.idConfInvtforrevieuw= this.idConfInvtforrevieuw+" "+idConfInvtforrevieuw;
+        if (kdim.startsWith("po")) {
+            this.idConfInvtforrevieuw = " " + idConfInvtforrevieuw;
+        } else {
+            this.idConfInvtforrevieuw = this.idConfInvtforrevieuw + " " + idConfInvtforrevieuw;
         }
 
     }
 
-
-
-
     public List<String> getidArticles() {
         return Arrays.asList(idArticles.split(";"));
     }
+
     public void setIdArticles(String idArticles) {
         this.idArticles = idArticles;
     }
 
     public void addIdArticles(String idarticle) {
-        this.idArticles= this.idArticles+";"+idarticle;
+        this.idArticles = this.idArticles + ";" + idarticle;
     }
 
     public Long getIdConf() {
@@ -168,35 +164,26 @@ public class AppUser implements UserDetails {
         idConf = IdConf;
     }
 
-
-
     @Enumerated(EnumType.STRING)
     private AppUserRole appUserRole;
     private Boolean locked = false;
     private Boolean enabled = false;
 
-    public AppUser(String firstName,
-                   String lastName,
-                   String email,
-                   String password,
-                   String speciality,
-                   String location,
-                   AppUserRole appUserRole
-                  ) {
+    public AppUser(String firstName, String lastName, String email, String password, String speciality, String location,
+            AppUserRole appUserRole) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
-        this.speciality=speciality;
+        this.speciality = speciality;
         this.appUserRole = appUserRole;
-        this.location=location;
-
+        this.location = location;
 
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        SimpleGrantedAuthority authority=new SimpleGrantedAuthority(appUserRole.name());
+        SimpleGrantedAuthority authority = new SimpleGrantedAuthority(appUserRole.name());
         return Collections.singletonList(authority);
     }
 
@@ -238,14 +225,14 @@ public class AppUser implements UserDetails {
         return enabled;
     }
 
-
     public boolean isEmmpty() {
-        if(this.getEmail()==null){
+        if (this.getEmail() == null) {
             return true;
-        }else {
+        } else {
             return false;
         }
     }
+
     @JsonIgnore
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Comment> comments;
