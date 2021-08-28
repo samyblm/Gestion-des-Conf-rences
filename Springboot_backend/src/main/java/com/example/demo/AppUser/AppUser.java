@@ -37,8 +37,8 @@ public class AppUser implements UserDetails {
     private Boolean reviewer = false;
     private String idConfInvtforrevieuw = "po";
     private String idConfInvtConfirmerev = "po";
-    private String getIdArticlesCorrig = "";
-    private String test = "";
+    private String getIdArticlesCorrig ="";
+    private String test ="";
 
     public String getTest() {
         return test;
