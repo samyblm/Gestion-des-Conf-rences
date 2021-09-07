@@ -97,8 +97,7 @@
   background-color: transparent;
   color: white;
   border: 2px solid white;
-  border-radius: 30px;
-  width: 200px;
+  width: 230px;
   padding: 10px;
   cursor: pointer;
   font-size: 1.2em;
@@ -147,8 +146,9 @@
 
 .form__main__logo__container {
   width: 100%;
-  height: 15vh;
+  height: 80px;
   margin-top: 40px;
+  margin-bottom: 10px;
 }
 
 .form__main__logo__img {
@@ -160,14 +160,16 @@
 
 .form__main form {
   height: 60%;
-  padding: auto;
   margin: 10px auto;
-  overflow: hidden;
+}
+
+.form__main form#f1 {
+  margin-top: 50px;
 }
 
 .form__main form > p {
   display: block;
-  margin: 20px  auto 20px auto;
+  margin: 20px auto 20px auto;
   width: -webkit-fit-content !important;
   width: -moz-fit-content !important;
   width: fit-content !important;
@@ -255,19 +257,105 @@
           box-shadow: inset 0px 0px 10px #747474;
 }
 
+.form__main form .input-field input:focus ~ ul {
+  display: block;
+}
+
+.form__main form .input-field ul#countries-list {
+  display: block;
+  position: absolute;
+  width: 35vw;
+  bottom: 50px;
+  height: 200px;
+  overflow: auto;
+  overflow-x: hidden;
+  padding: 0;
+  font-size: 1.2em;
+  border: 1px solid #c7c4c4;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  background-color: white;
+  z-index: 2;
+}
+
+.form__main form .input-field ul#countries-list li {
+  white-space: nowrap;
+  padding: 10px;
+  padding-left: 50px;
+  list-style-type: none;
+  display: block;
+  border-bottom: 1px solid #b4b4b4;
+  cursor: pointer;
+  background-repeat: no-repeat;
+  background-position: 10px center;
+  width: 100%;
+}
+
+.form__main form .input-field ul#countries-list li:hover {
+  background-color: #d8d8d8;
+}
+
+.form__main form .input-field ul#tags-list {
+  padding: 0;
+  margin-top: 10px;
+  overflow-x: auto;
+  width: 35vw;
+  white-space: nowrap;
+}
+
+.form__main form .input-field ul#tags-list li {
+  background-color: white;
+  display: inline-block;
+  cursor: pointer;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border: 2px solid gray;
+  font-weight: bold;
+  padding: 5px 10px;
+  font-size: .7em;
+  border-radius: 30px;
+  margin: 5px 2px;
+  color: gray;
+}
+
+.form__main form .input-field ul#tags-list li:hover {
+  background-color: red;
+  color: white;
+  border-color: red;
+}
+
+.form__main form .input-field ul#tags-list li i {
+  margin-right: 5px;
+  -webkit-transform: scale(1.5);
+          transform: scale(1.5);
+}
+
 .form__main form button {
   width: 200px;
   padding: 10px;
-  border-radius: 30px;
+  font-family: "Montserrat";
   border: 0;
   background-color: #01ffa0;
   color: white;
   cursor: pointer;
   margin: 20px auto;
+  margin-top: 50px;
   display: block;
   font-size: 1.3em;
   -webkit-transition: background-color 70ms linear;
   transition: background-color 70ms linear;
+}
+
+.form__main form button[type="button"] {
+  margin-top: 0;
+  margin-bottom: 50px;
 }
 
 .form__main form button:hover {
@@ -302,11 +390,35 @@
   .form__main {
     width: 100%;
   }
+  .form__main__logo__img {
+    width: 40vw !important;
+  }
   .form__main form {
     width: 100%;
   }
+  .form__main form .radios__container {
+    margin-bottom: 40px;
+  }
   .form__main form .input-field input {
     width: 70vw;
+  }
+  .form__main form .input-field ul {
+    width: 70vw !important;
+  }
+  .form__main form button[type="button"] {
+    margin-bottom: 70px;
+  }
+  .form__main form #p2 {
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
   }
   .form__main form .forgot-password {
     display: block;

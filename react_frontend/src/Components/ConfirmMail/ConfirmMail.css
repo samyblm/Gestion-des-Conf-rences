@@ -1,1 +1,69 @@
-/* No CSS *//*# sourceMappingURL=ConfirmMail.css.map */
+.cm-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: white;
+  padding-top: 40px;
+}
+
+.cm-img {
+  margin: 40px;
+}
+
+.cm-title {
+  margin-bottom: 40px;
+}
+
+.cm-paragraph {
+  text-align: center;
+  display: block;
+  margin: 8px;
+  color: #585858;
+}
+
+.cm-paragraph-container {
+  -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+          box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  width: 70%;
+  padding: 20px;
+}
+
+.cm-paragraph u {
+  color: #38a4fc;
+}
+
+.cm-paragraph b {
+  color: #38a4fc;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.cm-paragraph b:hover {
+  color: #256cca;
+}
+
+.cm-footer {
+  color: gray;
+  font-size: .7em;
+  position: absolute;
+  bottom: 30px;
+}
+
+.cm-footer-logo {
+  display: block;
+  margin: 20px auto;
+  width: 70px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+/*# sourceMappingURL=ConfirmMail.css.map */

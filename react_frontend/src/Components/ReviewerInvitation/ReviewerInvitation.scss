@@ -1,0 +1,79 @@
+$main-color: rgb(1,255,160);
+
+.ri {
+    &-container {
+        padding: 5px;
+        border: 1px solid rgb(175, 175, 175);
+        display: inline-block;
+        margin: 5px;
+        width: 23%;
+        height: 300px;
+        position: relative;
+        & a {
+            display: block;
+            text-decoration: none;
+            color: black;
+            text-align: center;
+            margin-bottom: 5px;
+            font-size: 1.3em;
+            font-weight: bold;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            padding: 0px 10px;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+        i {
+            display: block;
+            text-align: center;
+            color: $main-color;
+            transform: scale(2);
+
+        }
+        button {
+            display: block;
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: $main-color;
+            border: none;
+            color: white;
+            padding: 10px 30px;
+            font-size: 1.1em;
+            border-radius: 10px;
+            &.invited {
+               background-color: rgb(241, 241, 241);
+               color: $main-color;
+               border-color: $main-color;
+               font-weight: bold;
+               &:hover {
+                background-color: rgb(226, 226, 226);
+                color: $main-color;
+               } 
+            }
+            &:hover {
+                background-color: darken($main-color, 10%);
+            }
+        }
+        span {
+            width: 100%;
+            display: block;
+            color: gray;
+            text-align: center;
+            margin: 5px auto;
+        }
+    }
+    &-image-container {
+        width: 40%;
+        margin: 10px auto;
+        img {
+            width: 100%;
+            border-radius: 50%;
+            border: 3px solid $main-color;
+        }
+    }
+    
+}

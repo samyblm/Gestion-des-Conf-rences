@@ -1,0 +1,217 @@
+.c-container {
+  position: relative;
+  border-top: 2px solid #01ffa0;
+  padding: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  width: 1200px;
+  height: 300px;
+  margin-bottom: 25px;
+}
+
+.c-container .divider {
+  position: absolute;
+  right: 20%;
+  height: 70%;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  border-color: #f8f8f8;
+}
+
+.c-info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  width: 80%;
+}
+
+.c-info-image-container {
+  width: 50%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.c-info-image-img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.c-info-text {
+  width: 50%;
+  padding: 10px;
+  padding-left: 15px;
+}
+
+.c-info-text-daysLeft {
+  display: block;
+  padding: 5px;
+  border: 1px solid black;
+  font-size: .8em;
+  font-weight: bold;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-bottom: 10px;
+}
+
+.c-info-text-title {
+  display: block;
+  font-size: 1.2em;
+  font-weight: bolder;
+  margin-bottom: 10px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.c-info-text-tags {
+  display: inline-block;
+  margin-bottom: 10px;
+  padding: 0;
+  width: 100%;
+}
+
+.c-info-text-tags-item {
+  display: inline-block;
+  background-color: #adacac;
+  margin: 5px;
+  font-size: .7em;
+}
+
+.c-info-text-tags-item a {
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+  padding: 5px;
+  text-decoration: none;
+  color: white;
+}
+
+.c-info-text-tags-item:hover {
+  background-color: gray;
+}
+
+.c-info-text-tags-item:hover a {
+  color: white;
+}
+
+.c-info-text-details {
+  margin-bottom: 10px;
+}
+
+.c-info-text-extra span {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 5px;
+  font-size: .8em;
+  font-weight: bold;
+  color: #494949;
+}
+
+.c-info-text-extra span i {
+  margin-right: 5px;
+  font-size: 1.4em;
+}
+
+.c-plus {
+  width: 20%;
+  padding-left: 10px;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.c-plus-link-btn {
+  font-size: 1.1em;
+  padding: 10px;
+  width: 80%;
+  text-decoration: none;
+  letter-spacing: 3px;
+  color: white;
+  background-color: #01ffa0;
+  display: inline-block;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
+
+.c-plus-link-btn:hover {
+  color: white;
+  background-color: #00cd80;
+}
+
+.c-plus-icons {
+  width: 75%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.c-plus-icons a {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 1.5em;
+  margin: 10px;
+  color: black;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.c-plus-icons a:hover {
+  background-color: #c9c9c9;
+}
+
+.c-plus-icons a:active {
+  background-color: #b0b0b0;
+}
+/*# sourceMappingURL=Conference.css.map */

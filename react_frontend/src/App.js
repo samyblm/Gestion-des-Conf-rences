@@ -7,21 +7,29 @@ import ForgotPassword from './Components/ForgotPassword/ForgotPassword'
 import AddArticle from './Components/AddArticle/AddArticle'
 import ProtectedRoute from 'react-protected-route'
 import {isLoggedIn} from './Functions'
+import ConferencesPage from './Components/ConferencesPage/ConferencesPage'
+import ConferencePage from './Components/ConferencePage/ConferencePage'
+import UserPage from './Components/UserPage/UserPage'
 
 function App() {
   return (
-    <BrowserRouter>
-      <div className="App">
-        <Switch>
-          <Route exact path='/' component={MainPage} />
-          <ProtectedRoute isAuthenticated={isLoggedIn()} redirectTo="/signin" path="/add-article" component={AddArticle} />
-          <Route exact path='/forgot-password' component={ForgotPassword} />
-          <Route exact path="/signin" component={SignIn} />
-          <Route path='/verify-account' component={ConfirmMail} />
-          <Route path='/confirm/:token' component={AccountActivated} />
-        </Switch>
-      </div>
-    </BrowserRouter>
+    // <BrowserRouter>
+    //   <div className="App">
+    //     <Switch>
+    //       <Route exact path='/' component={MainPage} />
+    //       {/* <ProtectedRoute isAuthenticated={isLoggedIn()} redirectTo="/signin" path="/add-article" component={AddArticle} /> */}
+    //       <Route exact path='/forgot-password' component={ForgotPassword} />
+    //       <Route exact path="/signin" component={SignIn} />
+    //       <Route path='/verify-account' component={ConfirmMail} />
+    //       <Route path='/confirm/:token' component={AccountActivated} />
+    //       <Route path="/conferences" component={ConferencesPage} />
+    //       <Route path="/conference/:id" component={ConferencePage} />
+    //     </Switch>
+    //   </div>
+    // </BrowserRouter>
+    <div className="App">
+      <UserPage/>
+    </div>
   );
 }
 

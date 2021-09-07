@@ -1,0 +1,19 @@
+.nav-btn {
+    background-color: transparent;
+    margin: 10px;
+    color: white !important;
+    font-size: 18px;
+    font-family: Montserrat;
+    font-weight: 500;
+    
+}
+
+.s-identifier {
+    border-radius: 7px;
+    background-color: aliceblue;
+    color: black !important;
+}
+
+.s-identifier:hover  {
+    background-color: #01FFA0;
+}

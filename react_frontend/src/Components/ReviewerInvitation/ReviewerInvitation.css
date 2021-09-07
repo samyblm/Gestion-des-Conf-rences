@@ -1,0 +1,86 @@
+.ri-container {
+  padding: 5px;
+  border: 1px solid #afafaf;
+  display: inline-block;
+  margin: 5px;
+  width: 23%;
+  height: 300px;
+  position: relative;
+}
+
+.ri-container a {
+  display: block;
+  text-decoration: none;
+  color: black;
+  text-align: center;
+  margin-bottom: 5px;
+  font-size: 1.3em;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0px 10px;
+}
+
+.ri-container a:hover {
+  text-decoration: underline;
+}
+
+.ri-container i {
+  display: block;
+  text-align: center;
+  color: #01ffa0;
+  -webkit-transform: scale(2);
+          transform: scale(2);
+}
+
+.ri-container button {
+  display: block;
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  background-color: #01ffa0;
+  border: none;
+  color: white;
+  padding: 10px 30px;
+  font-size: 1.1em;
+  border-radius: 10px;
+}
+
+.ri-container button.invited {
+  background-color: #f1f1f1;
+  color: #01ffa0;
+  border-color: #01ffa0;
+  font-weight: bold;
+}
+
+.ri-container button.invited:hover {
+  background-color: #e2e2e2;
+  color: #01ffa0;
+}
+
+.ri-container button:hover {
+  background-color: #00cd80;
+}
+
+.ri-container span {
+  width: 100%;
+  display: block;
+  color: gray;
+  text-align: center;
+  margin: 5px auto;
+}
+
+.ri-image-container {
+  width: 40%;
+  margin: 10px auto;
+}
+
+.ri-image-container img {
+  width: 100%;
+  border-radius: 50%;
+  border: 3px solid #01ffa0;
+}
+/*# sourceMappingURL=ReviewerInvitation.css.map */

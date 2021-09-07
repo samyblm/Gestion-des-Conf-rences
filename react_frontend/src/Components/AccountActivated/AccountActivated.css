@@ -1,1 +1,56 @@
-/* No CSS *//*# sourceMappingURL=AccountActivated.css.map */
+.ac-container {
+  width: 100vw;
+  position: relative;
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-top: 40px;
+}
+
+.ac-container h2 {
+  margin: 30px;
+  font-weight: lighter;
+}
+
+.ac-img {
+  display: block;
+  margin: 50px;
+}
+
+.ac-link {
+  display: block;
+  color: white;
+  padding: 10px;
+  background-color: #01ffa0;
+  text-decoration: none;
+  width: 250px;
+  text-align: center;
+  font-size: 1.3em;
+  margin: 20px;
+}
+
+.ac-link:hover {
+  background-color: #00d787;
+}
+
+.ac-footer {
+  position: absolute;
+  bottom: 40px;
+  font-size: .7em;
+  color: gray;
+}
+
+.ac-footer-logo {
+  display: block;
+  margin: 20px auto;
+  width: 70px;
+}
+/*# sourceMappingURL=AccountActivated.css.map */

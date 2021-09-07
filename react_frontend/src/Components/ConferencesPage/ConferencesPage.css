@@ -1,0 +1,235 @@
+.cp-image {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.cp-image-container {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  position: relative;
+  width: 100vw;
+  height: 400px;
+  border-bottom: 5px solid #01ffa0;
+}
+
+.cp-image-text {
+  position: absolute;
+  color: white;
+  font-size: 6em;
+  font-weight: bold;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  text-shadow: 2px 2px 5px white;
+}
+
+.cp-form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100vw;
+  padding: 10px;
+}
+
+.cp-form form {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[3];
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-areas: "s s b" "l d t";
+  place-items: center;
+  width: 80%;
+}
+
+.cp-form form .input-field {
+  position: relative;
+  padding: 10px;
+  width: 100%;
+}
+
+.cp-form form .input-field#subject-input {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-area: s;
+}
+
+.cp-form form .input-field label {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  background-color: white;
+  color: #646464;
+}
+
+.cp-form form .input-field input {
+  font-family: 'Montserrat';
+  display: inline-block;
+  height: 35px;
+  padding: 10px;
+  width: 100%;
+  padding-right: 30px;
+  border: 1px solid #b1b1b1;
+  color: #616161;
+  font-weight: bold;
+}
+
+.cp-form form .input-field input[type="date"]::-webkit-inner-spin-button, .cp-form form .input-field input[type="date"]::-webkit-calendar-picker-indicator {
+  display: none;
+  -webkit-appearance: none;
+}
+
+.cp-form form .input-field input[type="date"]::-webkit-datetime-edit {
+  color: transparent;
+}
+
+.cp-form form .input-field input[type="date"]:focus::-webkit-datetime-edit {
+  color: black;
+}
+
+.cp-form form .input-field input::-webkit-input-placeholder {
+  font-family: 'Montserrat';
+  font-weight: initial;
+}
+
+.cp-form form .input-field input:-ms-input-placeholder {
+  font-family: 'Montserrat';
+  font-weight: initial;
+}
+
+.cp-form form .input-field input::-ms-input-placeholder {
+  font-family: 'Montserrat';
+  font-weight: initial;
+}
+
+.cp-form form .input-field input::placeholder {
+  font-family: 'Montserrat';
+  font-weight: initial;
+}
+
+.cp-form form button[type="submit"] {
+  -ms-grid-row: 1;
+  -ms-grid-column: 3;
+  grid-area: b;
+  margin: 0;
+  color: #01ffa0;
+  height: 35px;
+  width: calc(100% - 20px);
+  padding: 5px;
+  background-color: white;
+  border: 2px solid #01ffa0;
+  cursor: pointer;
+  font-family: 'Montserrat';
+  font-weight: bold;
+  font-size: 1.1em;
+  -webkit-transition: all 100ms linear;
+  transition: all 100ms linear;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.cp-form form button[type="submit"]:hover {
+  color: white;
+  background-color: #01ffa0;
+}
+
+.cp-form form select {
+  border: 1px solid #b1b1b1;
+  background-color: white;
+  font-family: "Montserrat";
+  height: 35px;
+  padding-left: 10px;
+  width: 100%;
+}
+
+.cp-form form select ~ label {
+  color: red;
+  position: absolute;
+}
+
+.cp-conferences-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100vw;
+}
+
+.cp-np-btns {
+  margin: 20px auto;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.cp-np-btns button {
+  padding: 10px;
+  font-size: 1em;
+  border: 2px solid #7c7c7c;
+  font-family: 'Montserrat';
+  margin: 10px;
+  border-radius: 5px;
+  width: 120px;
+  cursor: pointer;
+  font-weight: bold;
+  background-color: white;
+  color: gray;
+}
+
+.cp-np-btns button:disabled {
+  border-color: silver !important;
+  color: #b8b8b8 !important;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  cursor: no-drop;
+}
+
+.cp-np-btns button:hover:enabled {
+  color: white;
+  background-color: grey;
+}
+
+.cp-np-btns-n {
+  background-color: white !important;
+  color: #01ffa0 !important;
+  border-color: #01ffa0 !important;
+}
+
+.cp-np-btns-n:hover:enabled {
+  color: white !important;
+  background-color: #01ffa0 !important;
+}
+
+.cp-np-btns-counter {
+  font-size: 1.2em;
+  font-weight: bold;
+  display: inline-block;
+  margin: 0px 30px;
+  color: black;
+}
+/*# sourceMappingURL=ConferencesPage.css.map */

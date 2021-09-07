@@ -1,0 +1,44 @@
+.footer.row {
+    width: 80%;
+    margin: auto;
+}
+
+.col-md-3 {
+  float: left;
+  margin: auto;
+  text-align: center;
+}
+
+.link {
+    color: black;
+    text-decoration: none;
+}
+
+
+.img-footer {
+    position: relative;
+    display: block;
+    min-width: 5%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+    
+}
+
+.img-footer2 {
+    position: relative;
+    max-width: 70%;
+    margin: auto;
+    margin-top: -10%;
+    
+}
+
+.footer-title {
+    font-family: Montserrat;
+    font-weight: bold;
+}
+
+.footer-copyright {
+  position: static;
+    
+}
