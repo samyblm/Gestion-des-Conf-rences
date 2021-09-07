@@ -1,7 +1,10 @@
 package com.example.demo.AppUser;
+import com.example.demo.Registration.JwtUtility;
 import com.example.demo.Registration.token.ConfirmationToken;
 import com.example.demo.Registration.token.ConfirmationTokenService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -20,6 +23,8 @@ public class AppUserService implements UserDetailsService {
             "user with email  not found";
 
     private final static String Credentials_NOT_FOUND_MSG="Credentials erronneer";
+    @Autowired
+    private JwtUtility jwtTokenUtil;
 
     private  AppUserRepository appUserRepository;
 //    private  final AppUsernameRepository appUsernameRepository;
@@ -79,6 +84,25 @@ public class AppUserService implements UserDetailsService {
     }
     public int enableAppUser(String email) {
         return appUserRepository.enableAppUser(email);
+    }
+    public int lockedAppUser(String email) {
+        return appUserRepository.lockedAppUser(email);
+    }
+    public  int updateAppUser(String mailuser , String email) {
+        return appUserRepository.updateAppUser(mailuser,email);
+    }
+    public String generate_new_token(String mailuser){
+        AppUser userObj2 = (AppUser) appUserRepository.findByEmail(mailuser).orElseThrow();
+        final String jwt = jwtTokenUtil.generateToken(userObj2);
+        ConfirmationToken confirmationToken = new ConfirmationToken(
+                jwt,
+                LocalDateTime.now(),
+                LocalDateTime.now().plusMinutes(15),
+                userObj2
+        );
+        confirmationTokenService.saveConfirmationToken(confirmationToken);
+        return jwt;
+
     }
 
 

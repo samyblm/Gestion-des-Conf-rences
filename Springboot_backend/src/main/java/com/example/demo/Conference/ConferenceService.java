@@ -97,5 +97,6 @@ public class ConferenceService {
         conference.setOwner(Owner);
 //        conference.addidViewers(conference.getidViewer());
         conferenceRepository.save(conference);
+
     }
 }

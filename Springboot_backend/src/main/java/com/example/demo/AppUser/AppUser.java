@@ -56,6 +56,10 @@ public class AppUser implements UserDetails {
         return speciality;
     }
 
+    public List<String> getspecialitearray() {
+        return Arrays.asList(speciality.split("$"));
+    }
+
     public String getSpeciality() {
         return speciality;
     }

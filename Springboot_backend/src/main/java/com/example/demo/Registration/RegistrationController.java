@@ -1,10 +1,14 @@
 package com.example.demo.Registration;
 import com.example.demo.AppUser.AppUser;
 import com.example.demo.AppUser.AppUserService;
+import com.example.demo.Notification.Notifweb.Notif;
+import com.example.demo.Notification.Notifweb.NotificationRepository;
+import com.example.demo.Notification.Notifweb.NotificationService;
 import com.example.demo.Registration.token.ConfirmationToken;
 import com.example.demo.Registration.token.ConfirmationTokenService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.firebase.messaging.Notification;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -35,6 +39,8 @@ public class RegistrationController   {
     BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
     private final RegistrationService registrationService;
     private final AppUserService appUserService;
+    private final NotificationService notificationService;
+    private final NotificationRepository notificationRepository;
 
 
     @CrossOrigin
@@ -107,6 +113,8 @@ public class RegistrationController   {
                         );
                         confirmationTokenService.saveConfirmationToken(confirmationToken);
                         map.put("token", token);
+//                        Notif notif=notificationService.addNewNotif(Email,tokenotif);
+//                        notificationRepository.save(notif);
                     }
                     else if (Valide != true ) {
                         map.put("isError","true");

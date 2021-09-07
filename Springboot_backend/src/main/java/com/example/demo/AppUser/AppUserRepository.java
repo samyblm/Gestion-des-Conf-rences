@@ -30,4 +30,14 @@ public interface AppUserRepository extends JpaRepository<AppUser,Long> {
     default AppUser getUserByName(String firstName) {
         return findAppUserByFirstName(firstName).orElseThrow(() -> new ResourceNotFoundException("User", "username", firstName));
     }
+    @Transactional
+    @Modifying
+    @Query("UPDATE AppUser a " +"SET a.locked = TRUE WHERE a.email = ?1")
+    int lockedAppUser(String email);
+
+
+    @Transactional
+    @Modifying(clearAutomatically = true)
+    @Query("UPDATE AppUser a " +"SET a.email = ?2 WHERE a.email = ?1")
+    int updateAppUser( String mail,String email);
 }
