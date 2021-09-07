@@ -17,7 +17,7 @@ class MainPage extends Component {
             this.setState({user: ud})
         }
         else {
-            console.log('cdm: not logged in')
+            console.log("state: ",this.state)
         }
     }
     

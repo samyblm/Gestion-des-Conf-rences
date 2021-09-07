@@ -52,10 +52,6 @@ class Conference extends Component {
                                 <i className="bi bi-geo-alt"></i>
                                 Cité 200 logements Ben Badis, Oran, Algérie
                             </span>
-                            <span>
-                                <i className="bi bi-person"></i>
-                                187 vont participer
-                            </span>
                         </div>
                     </div>
                 </div>

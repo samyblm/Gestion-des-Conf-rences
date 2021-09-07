@@ -1,45 +1,19 @@
 import { Component } from 'react';
+import CountriesInput from '../CountriesInput/CountriesInput'
+
 import anime from 'animejs'
 import './SignIn.css'
 import '../../index.css'
-// import { countries } from 'countries-list'
 
 class SignIn extends Component {
     constructor(props) {
-        super(props)
-        // let arr = [];
-        // let names = [];
-        // let h = []
-        // for (let k of Object.keys(countries)) {
-        //     names.push(countries[k].name);
-        // }
-        // names.sort();
-        // for (let j of names) {
-        //     let b = false;
-        //     let n = 0;
-        //     while (!b && n < Object.keys(countries).length) {
-        //         if (countries[Object.keys(countries)[n]].name === j) {
-        //             h.push(Object.keys(countries)[n])
-        //             b = true;
-        //         }
-        //         else n++;
-        //     }
-        // }
-        // for (let k of h) {
-        //     if (k !== "IL") {
-        //         let obj = {}
-        //         obj[k] = countries[k]
-        //         arr.push(obj)
-        //     }
-        // }
+        super(props) 
         this.submitSignUp = this.submitSignUp.bind(this)
         this.submitSignIn = this.submitSignIn.bind(this)
         this.writeCountry = this.writeCountry.bind(this)
-        // this.state = {
-        //     countries: arr,
-        //     tags: [],
-        //     currentCountry: ""
-        // }
+        this.state = {
+            tags: [],
+        }
     }
 
     submitSignIn() {
@@ -56,27 +30,26 @@ class SignIn extends Component {
             mode: 'cors',
             headers: new Headers({ 'Content-Type': 'application/json' }),
         })
-            .then(res => res.json())
-            .then(json => {
-                console.log('response is: ', json);
-                const dataObj = json
-                if (dataObj.isError === "true") {
-                    let span_err = document.getElementById('first-form-err')
-                    span_err.style.display = 'block'
-                    if (dataObj.emailSignin === "") {
-                        span_err.innerText = dataObj.passwordSignin;
-                        document.getElementById('passwordSignin').value = "";
-                    }
-                    else {
-                        span_err.innerText = dataObj.emailSignin;
-                    }
+        .then(res => res.json())
+        .then(json => {
+            console.log('response is: ', json);
+            const dataObj = json
+            if (dataObj.isError === "true") {
+                let span_err = document.getElementById('first-form-err')
+                span_err.style.display = 'block'
+                if (dataObj.emailSignin === "") {
+                    span_err.innerText = dataObj.passwordSignin;
+                    document.getElementById('passwordSignin').value = "";
                 }
                 else {
-                    document.cookie = "token=" + json.token;
-                    window.location.assign('/')
+                    span_err.innerText = dataObj.emailSignin;
                 }
-            })
-        // window.event.target.reset();
+            }
+            else {
+                document.cookie = "token=" + json.token;
+                window.location.assign('/')
+            }
+        })
     }
     //---------------------------------------------------------------------------------------------
     submitSignUp() {
@@ -404,7 +377,8 @@ class SignIn extends Component {
                                 <input type="text" className="input-field__text" name="username" id="username" required placeholder="Username" style={{ backgroundImage: 'url("/svgs/person.svg")' }} />
                                 <span className="form__err" id="username-err"></span>
                             </div>
-                            <div className="input-field">
+                            <CountriesInput/>
+                            {/* <div className="input-field">
                                 <input onClick={() => document.getElementById('countries-list').style.display = "block"} readOnly type="text" className="input-field__text" name="country" id="country" required placeholder="Country" style={{ backgroundImage: 'url("https://www.countryflags.io/dz/shiny/32.png")', cursor: "pointer" }} />
                                 <ul id="countries-list" style={{ display: 'none' }}>
                                     {
@@ -416,7 +390,7 @@ class SignIn extends Component {
                                     }
                                 </ul>
                                 <span className="form__err" id="birthDate-err"></span>
-                            </div>
+                            </div> */}
                             <div className="input-field">
                                 <input autoComplete="off" multiple onKeyUp={() => this.handleTagAdd()} onClick={() => document.getElementById('countries-list').style.display = "block"} type="text" className="input-field__text" name="tags" id="tags" required={this.state.tags.length===0} placeholder="Tags" style={{ backgroundImage: 'url("svgs/tags.svg")' }} />
                                 <ul id="tags-list">

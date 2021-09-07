@@ -43,6 +43,12 @@ public class Conference {
     private boolean validity;
     private String Owner;
 
+
+
+    private String Location;
+    private String date;
+    private String Tags="";
+
 //    private Long idArticles;
 
 
@@ -51,10 +57,40 @@ public class Conference {
     private String idViewersFinal="po";
     private String idViewersRefus="po";
 
+
+    public String getLocation() {
+        return Location;
+    }
+
+    public void setLocation(String location) {
+        Location = location;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getTags() {
+        return Tags;
+    }
+
+    public void setTags(String tags) {
+        Tags = tags;
+    }
+
+
+
     public List<String> getidArticles() {
         return Arrays.asList(idArticles.split(" "));
     }
 
+    public List<String> getTAgsarray() {
+        return Arrays.asList(Tags.split("$"));
+    }
 
 
     public List<String> getidViewers() {
@@ -172,7 +208,7 @@ public class Conference {
                       String company_name,
                       String resumer,
                       String application_condition,
-                      boolean validity,String Owner,String idArticles,String idViewers) {
+                      boolean validity,String Owner,String idArticles,String idViewers,String location,String tags,String date) {
         this.id = id;
         this.nom = nom;
         this.deadline = deadline;
@@ -183,6 +219,9 @@ public class Conference {
         this.Owner = Owner;
         this.idArticles=idArticles;
         this.idViewers=idViewers;
+        this.Location=location;
+        this.Tags=tags;
+        this.date=date;
     }
     public Conference(String nom,
                       LocalDate deadline,

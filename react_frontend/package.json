@@ -17,6 +17,7 @@
     "react-bootstrap": "^1.6.1",
     "react-country-dropdown": "^1.0.4",
     "react-dom": "^17.0.2",
+    "react-loading": "^2.0.3",
     "react-protected-route": "^1.0.8",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",

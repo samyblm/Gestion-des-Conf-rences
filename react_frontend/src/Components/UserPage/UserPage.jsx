@@ -7,6 +7,9 @@ import ReviewerInvitation from "../ReviewerInvitation/ReviewerInvitation";
 import './UserPage.css'
 import $clamp from 'clamp-js'
 import * as JsSearch from 'js-search'
+import MiniConference from '../MiniConference/MiniConference';
+import {isLoggedIn, getCookieValue} from "../../Functions"
+import ReactLoading from 'react-loading'
 
 class UserPage extends Component {
 
@@ -27,6 +30,7 @@ class UserPage extends Component {
         this.state = {
             displayMainInfo: true,
             formTabIndex: 1,
+            userData: null,
             experience: [
                 {
                     company: 'Lorem ipsum',
@@ -151,17 +155,35 @@ class UserPage extends Component {
         }
     }
 
-    componentDidMount() {
-        let search = new JsSearch.Search('id')
-        search.addIndex('username')
-        search.addIndex('job')
-        search.addDocuments([...this.state.users])
-        this.setState({search})
-        document.getElementById('keyWords').style.paddingLeft = (document.getElementById('keywords-list').offsetWidth + (this.state.addConferenceData.keyWords.length === 0 ? 10 : 15)) + "px"
-        for (let k of document.getElementsByClassName('ri-userJob')) {
-            $clamp(k, { clamp: 2 })
+    async componentDidMount() {
+        if(isLoggedIn()) {
+            let token = getCookieValue('token');
+            console.log('token: ', token);
+            // let res = await fetch('http://localhost:8090/api/v1/Appuser/getUser', {
+            //     method: 'GET',
+            //     mode: 'cors',
+            //     headers: new Headers({'authorization' : "Bearer " + token})
+            // })
+            let res = await fetch('http://localhost:8090/api/v1/Appuser/getUser', {
+                method: 'GET',
+                mode: 'cors',
+                headers: new Headers({'authorization' : "Bearer " + token})
+            })
+            let json = await res.json()
+            console.log(json);
+            let search = new JsSearch.Search('id')
+            search.addIndex('username')
+            search.addIndex('job')
+            search.addDocuments([...this.state.users])
+            this.setState({search, userData: json})
+            document.getElementById('keyWords').style.paddingLeft = (document.getElementById('keywords-list').offsetWidth + (this.state.addConferenceData.keyWords.length === 0 ? 10 : 15)) + "px"
+            for (let k of document.getElementsByClassName('ri-userJob')) {
+                $clamp(k, { clamp: 2 })
+            }
         }
-
+        else {
+            window.location.assign("/signin")
+        }
     }
 
     componentDidUpdate() {
@@ -357,7 +379,11 @@ class UserPage extends Component {
     // }
 
     render() {
-        let userInfo = <div style={{ display: this.state.displayMainInfo ? "block" : "none" }}>
+        console.log(this.state);
+        let loading = <div style={{width: '100vw', height: '100vh'}}>
+            <ReactLoading/>
+        </div>
+        let userInfo = this.state.userData===null ? loading : <div style={{ display: this.state.displayMainInfo ? "block" : "none" }}>
             <div className="up-right-r2">
                 <span className="up-right-r2-title">À propos</span>
                 <hr />
@@ -367,7 +393,7 @@ class UserPage extends Component {
                     <span className="up-right-r2-s1-title">Informations de contact</span>
                     <div className="editable-data">
                         <span className="editable-data-title">Telephone</span>
-                        <input required disabled={!this.state.editableContact} type="tel" className="editable-data-input phone" defaultValue={this.state.contact.phone} />
+                        <input required disabled={!this.state.editableContact} type="tel" className="editable-data-input phone" defaultValue={this.state.userData.Telf.length===0 ? "Vide" : this.state.userData.Telf} />
                     </div>
                     <div className="editable-data">
                         <span className="editable-data-title">Adresse</span>
@@ -375,7 +401,7 @@ class UserPage extends Component {
                     </div>
                     <div className="editable-data">
                         <span className="editable-data-title">Email</span>
-                        <input required disabled={!this.state.editableContact} type="email" className="editable-data-input email" defaultValue={this.state.contact.email} />
+                        <input required disabled={!this.state.editableContact} type="email" className="editable-data-input email" defaultValue={this.state.userData.Email} />
                     </div>
                     <div className="s1-buttons" style={{ display: this.state.editableContact ? "block" : "none" }}>
                         <button type="submit" className="save-btn">
@@ -391,11 +417,11 @@ class UserPage extends Component {
                     <span className="up-right-r2-s2-title">Information de base</span>
                     <div className="data">
                         <span className="data-title">Date de naissance</span>
-                        <span className="data-info">27 janvier 1999</span>
+                        <span className="data-info">{this.state.userData['Date de naissance'].length === 0 ? "Vide" : this.state.userData['Date de naissance']}</span>
                     </div>
                     <div className="data">
                         <span className="data-title">Sexe</span>
-                        <span className="data-info">Mâle</span>
+                        <span className="data-info">{this.state.userData.Sexe==="M" ? "Mâle" : "Femelle"}</span>
                     </div>
                 </div>
             </div>
@@ -404,7 +430,7 @@ class UserPage extends Component {
                 <hr />
                 <button onClick={() => this.setState({ displayMainInfo: false })} className="add-btn">Créer</button>
                 <div className="conferences">
-                    Rien a afficher
+                   <MiniConference/>
                 </div>
             </div>
             <div className="up-right-r4">
@@ -416,9 +442,8 @@ class UserPage extends Component {
                 </div>
             </div>
         </div>
-
         return (
-            <div>
+            this.state.userData===null ? loading : <div>
                 <MyNavbar />
                 <div className="up-container">
                     <div className="up-left-container">
@@ -433,34 +458,36 @@ class UserPage extends Component {
                                 <hr />
                                 <span>Experience</span>
                             </div>
-                            <ul className="up-left-experience-list">
-                                {
-                                    this.state.experience.map((e, i) =>
+                            {this.state.userData.Experience.length===0 ? <span>Vide</span> : 
+                                <ul className="up-left-experience-list">
+                                    {
+                                        this.state.userData.Experience.map((e, i) =>
                                         <li key={i} className="up-left-experience-list-item">
-                                            <h6>{e.company}</h6>
-                                            <span className="period">{e.from} - {e.to}</span>
-                                            <span className="job">{e.job}</span>
-                                            <button onClick={() => this.removeExperience()}>
-                                                <i className="bi bi-x"></i>
+                                                <h6>{e.company}</h6>
+                                                <span className="period">{e.from} - {e.to}</span>
+                                                <span className="job">{e.job}</span>
+                                                <button onClick={() => this.removeExperience()}>
+                                                    <i className="bi bi-x"></i>
+                                                </button>
+                                            </li>
+                                        )
+                                    }
+                                    <li className="up-left-experience-list-item" style={{ display: 'none' }}>
+                                        <form style={{ display: this.state.formTabIndex === 1 ? "block" : "none" }} onSubmit={() => this.submitExperienceForm(true)}>
+                                            <input id="companyName" required type="text" placeholder="Nom de l'entreprise" />
+                                            <input id="startYear" min={1970} max={new Date().getFullYear()} required type="number" placeholder="année début" />
+                                            <input id="endYear" min={1970} max={new Date().getFullYear()} required type="number" placeholder="année fin" />
+                                            <input id="jobName" required type="text" placeholder="Travail" />
+                                            <button id="submitExperience" type="submit">
+                                                Confirmer
                                             </button>
-                                        </li>
-                                    )
-                                }
-                                <li className="up-left-experience-list-item" style={{ display: 'none' }}>
-                                    <form style={{ display: this.state.formTabIndex === 1 ? "block" : "none" }} onSubmit={() => this.submitExperienceForm(true)}>
-                                        <input id="companyName" required type="text" placeholder="Nom de l'entreprise" />
-                                        <input id="startYear" min={1970} max={new Date().getFullYear()} required type="number" placeholder="année début" />
-                                        <input id="endYear" min={1970} max={new Date().getFullYear()} required type="number" placeholder="année fin" />
-                                        <input id="jobName" required type="text" placeholder="Travail" />
-                                        <button id="submitExperience" type="submit">
-                                            Confirmer
-                                        </button>
-                                        <button onClick={() => this.submitExperienceForm()} id="cancelSubmitExperience">
-                                            Annuler
-                                        </button>
-                                    </form>
-                                </li>
-                            </ul>
+                                            <button onClick={() => this.submitExperienceForm()} id="cancelSubmitExperience">
+                                                Annuler
+                                            </button>
+                                        </form>
+                                    </li>
+                                </ul>
+                            }
                             <button id="addExperienceBtn" onClick={() => this.showExperienceForm()} className="up-left-experience-add">Ajouter expérience</button>
                         </div>
                         <div className="up-left-competences">
@@ -468,41 +495,43 @@ class UserPage extends Component {
                                 <hr />
                                 <span>Compétences</span>
                             </div>
-                            <ul className="up-left-competences-list">
-                                {
-                                    this.state.competences.map((eachCompetence, index) =>
+                            {this.state.userData["Compétences"].length===0 ? <span>Vide</span> :
+                                <ul className="up-left-competences-list">
+                                    {
+                                        this.state.userData['Compétences'].map((eachCompetence, index) =>
                                         <li key={index} className="up-left-competences-list-item">
-                                            <span>{eachCompetence}</span>
-                                            <button onClick={() => this.removeCompetence()}>
-                                                <i className="bi bi-x"></i>
-                                            </button>
-                                        </li>
-                                    )
-                                }
-                                <li style={{ display: 'none' }} className="up-left-competences-list-item">
-                                    <input type='text' id="newCompetence" />
-                                    <button id="confirmAdd" onClick={() => this.confirmAdd()}>
-                                        <i className='bi bi-check'></i>
-                                    </button>
-                                    <button onClick={() => this.cancelAdd()}>
-                                        <i className="bi bi-x"></i>
-                                    </button>
-                                </li>
-                            </ul>
+                                                <span>{eachCompetence}</span>
+                                                <button onClick={() => this.removeCompetence()}>
+                                                    <i className="bi bi-x"></i>
+                                                </button>
+                                            </li>
+                                        )
+                                    }
+                                    <li style={{ display: 'none' }} className="up-left-competences-list-item">
+                                        <input type='text' id="newCompetence" />
+                                        <button id="confirmAdd" onClick={() => this.confirmAdd()}>
+                                            <i className='bi bi-check'></i>
+                                        </button>
+                                        <button onClick={() => this.cancelAdd()}>
+                                            <i className="bi bi-x"></i>
+                                        </button>
+                                    </li>
+                                </ul>
+                            }
                             <button id="addCompetence" onClick={() => this.showCompetenceInput()} className="up-left-competences-add">Ajouter compétence</button>
                         </div>
                     </div>
                     <div className="up-right-container">
                         <div className="up-right-r1">
-                            <input id="username-input" disabled={!this.state.editableMainData} size={this.state.username.length - 2} type="text" className="up-right-username" defaultValue={this.state.username} />
+                            <input id="username-input" disabled={!this.state.editableMainData} type="text" size={this.state.userData.userName.length - 2} className="up-right-username" defaultValue={this.state.userData.userName} />
                             <h3 style={{ display: this.state.displayMainInfo ? "none" : "inline-block" }}>Créer conference</h3>
                             <span className="up-right-location">
-                                <i className="bi bi-geo-alt-fill"></i>Alger, Algérie
+                                <i className="bi bi-geo-alt-fill"></i>{this.state.userData.Location}
                             </span>
                             <i onClick={() => this.editMainInfo()} className="bi bi-pencil-square" style={{ display: (this.state.editableMainData || !this.state.displayMainInfo) ? "none" : "block" }}></i>
                             <div className="up-right-job">
                                 <i className="bi bi-link"></i>
-                                <input id="currentJob-input" disabled={!this.state.editableMainData} type="text" defaultValue={this.state.currentJob} size={this.state.currentJob.length - 2} />
+                                <input id="currentJob-input" disabled={!this.state.editableMainData} type="text" defaultValue={this.state.userData.Job} size={this.state.userData.Job.length - 2} />
                             </div>
                             <div className="up-right-r1-buttons" style={{ display: this.state.editableMainData ? "block" : "none" }}>
                                 <button onClick={() => this.confirmMainInfoEdit()} className="confirm-btn">

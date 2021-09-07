@@ -58,9 +58,10 @@ public class AppUserController {
        conferenceRepository.save(conf);
     }
 
-
+    @CrossOrigin
     @PostMapping(path="refuse/{conferenceId}")
     public void refuseInvtRev(@PathVariable Long conferenceId,@RequestHeader String authorization){
+
         String token = null;
         String userName = null;
         if(null != authorization && authorization.startsWith("Bearer ")) {
@@ -80,6 +81,8 @@ public class AppUserController {
 
 
     }
+
+
 
 
 
@@ -140,6 +143,78 @@ public class AppUserController {
 
         return map;
 
+
+    }
+
+
+
+
+    @CrossOrigin
+    @PostMapping("addNameandJob")
+    public void ajouterjobandname(@RequestBody String job,@RequestBody String name,@RequestHeader String authorization){
+        String token = null;
+        String userName = null;
+        if(null != authorization && authorization.startsWith("Bearer ")) {
+            token = authorization.substring(7);
+            userName = jwtTokenUtil.getUsernameFromToken(token);
+        }
+        AppUser userObj = (AppUser) appUserService.loadUserByUsername(userName);
+        userObj.setCurruntJob(job);
+        userObj.setFirstName(name);
+        appUserRepository.save(userObj);
+
+    }
+
+
+    @GetMapping("getUser")
+    @CrossOrigin(origins = "http://localhost:3000", allowedHeaders = "*")
+    public Map<String, Object> getuser(@RequestHeader String authorization){
+        System.out.println("cros msh tmshiiii hnaaa ");
+        String token = null;
+        String userName = null;
+        if(null != authorization && authorization.startsWith("Bearer ")) {
+            token = authorization.substring(7);
+            userName = jwtTokenUtil.getUsernameFromToken(token);
+        }
+        AppUser userObj = (AppUser) appUserService.loadUserByUsername(userName);
+
+//        String ret="";
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("id", userObj.getId());
+        map.put("Telf",userObj.getTelf());
+        map.put("userName",userObj.getFirstName());
+        map.put("Job",userObj.getCurruntJob());
+        map.put("Location",userObj.getLocation());
+        map.put("Email",userObj.getEmail());
+        map.put("Date de naissance",userObj.getDate());
+        map.put("Sexe",userObj.getSex());
+        map.put("Conférences", userObj.getIdConf());
+        map.put("Experience", userObj.getexperience());
+        map.put("Compétences", userObj.getcompetence());
+        map.put("Articles", userObj.getidArticles());
+        map.put("Image", "https://i.pravatar.cc/300?img=68");
+
+
+
+//            ret="{"+"\n"+"id"+":"+userObj.getId()+","+"\n"+
+//                    "userName"+":"+userObj.getFirstName()+","+"\n"+
+//                    "Job"+":"+userObj.getCurruntJob()+","+"\n"+
+//                    "Telf"+":"+userObj.getTelf()+","+"\n"+
+//                    "Location"+":"+userObj.getLocation()+","+"\n"+
+//                    "Email"+":"+userObj.getEmail()+","+"\n"+
+//                    "Date de naissance"+":"+userObj.getDate()+","+"\n"+
+//                    "Sexe"+":"+userObj.getSex()+","+"\n"+
+//                    "Conférences"+":"+userObj.getIdConf()+","+"\n"+
+//                    "Articles"+":"+userObj.getidArticles()+","+"\n"+
+//                    "Experience"+":"+userObj.getexperience()+","+"\n"+
+//                    "Compétences"+":"+userObj.getcompetence()+"\n"+
+//                    "}";
+
+
+
+
+//        return ret;
+        return map;
 
     }
 

@@ -44,27 +44,25 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .csrf().disable()
-                .authorizeRequests()
-                    .antMatchers("/api/v*/registration")
-                    .permitAll()
-//                    .antMatchers("/api/v*/registration/test")
+                .csrf().disable();
+//                .authorizeRequests()
+//                    .antMatchers("/api/v*/registration")
 //                    .permitAll()
-                    .antMatchers("/api/v1/registration/reset")
-                    .permitAll()
-                    .antMatchers("/api/v1/registration/reset/pass/*")
-                    .permitAll()
-                    .antMatchers("/api/v*/registration/login")
-                    .permitAll()
-                    .antMatchers("/api/v*/registration/confirm")
-                    .permitAll()
-                    .antMatchers("/api/v1/registration/confirm/*")
-                    .permitAll()
-                .anyRequest()
-                .authenticated().and()
-                .formLogin().and()
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+//                    .antMatchers("/api/v1/registration/reset")
+//                    .permitAll()
+//                    .antMatchers("/api/v1/registration/reset/pass/*")
+//                    .permitAll()
+//                    .antMatchers("/api/v*/registration/login")
+//                    .permitAll()
+//                    .antMatchers("/api/v*/registration/confirm")
+//                    .permitAll()
+//                    .antMatchers("/api/v1/registration/confirm/*")
+//                    .permitAll()
+//                .anyRequest()
+//                .authenticated().and()
+//                .formLogin().and()
+//                .sessionManagement()
+//                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
 
@@ -107,6 +105,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         FirebaseApp app = FirebaseApp.initializeApp(firebaseOptions, "my-app");
         return FirebaseMessaging.getInstance(app);
     }
+
+
 
 
 

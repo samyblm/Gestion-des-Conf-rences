@@ -16,16 +16,29 @@ function getCookieValue(name) {
 }
 
 function isLoggedIn() {
-    return (getCookieValue('token')!=="")
+    return (getCookieValue('token').length !== 0)
 }
 
+// async function getUserData(token) {
+//     let json;
+//     fetch('http://localhost:8090/api/v1/Appuser/getUser', {
+//         mode: 'cors',
+//         method: 'GET',
+//         headers: new Headers({'Authorization': 'Bearer ' + token})
+//     }).then(res=>res.json())
+//     .then(jsn=>json = jsn)
+//     return json
+// }
 async function getUserData(token) {
-    const res = await fetch('http://localhost:8090/api/v1/registration/test', {
-        method: 'GET',
+    let myHeader = new Headers();
+    myHeader.append('authorization','Bearer '+token);
+    const res = await fetch("http://localhost:8090/api/v1/Appuser/getUser", {
         mode: 'cors',
-        headers: new Headers({'Authorization': 'Bearer ' + token})
+        method: "GET",
+        headers: myHeader,
+
     })
-    const json = await res.json()
+    let json = await res.json();
     return json;
 }
 

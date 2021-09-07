@@ -43,8 +43,9 @@ public class RegistrationController   {
     private final NotificationRepository notificationRepository;
 
 
-    @CrossOrigin
+
     @GetMapping("test")
+    @CrossOrigin(origins = "http://localhost:3000", allowedHeaders = "*")
     public String home(@RequestHeader String authorization) throws JsonProcessingException {
 
 //        HashMap<String, String> map = new HashMap<>();

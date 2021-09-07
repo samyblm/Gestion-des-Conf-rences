@@ -1,5 +1,6 @@
 package com.example.demo.AppUser;
 
+import com.example.demo.Articles.File;
 import com.example.demo.Comment.Comment;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.EqualsAndHashCode;
@@ -27,6 +28,15 @@ public class AppUser implements UserDetails {
     private String firstName;
     private String lastName;
     private String email;
+    private String curruntJob="Develloper";
+    private String telf="";
+    private String date="11/11/2000";
+    private String sex="M";
+
+
+
+    private String experience = "";
+    private String competence = "";
     private String password;
     private Long idConf;
     private String idArticles = "";
@@ -39,6 +49,80 @@ public class AppUser implements UserDetails {
     private String idConfInvtConfirmerev = "po";
     private String getIdArticlesCorrig ="";
     private String test ="";
+    @OneToOne
+    private File file;
+
+    public File getFile() {
+        return file;
+    }
+
+    public void setFile(File file) {
+        this.file = file;
+    }
+
+
+
+//    public String getExperience() {
+//        return experience;
+//    }
+
+
+
+    public void setExperience(String experience) {
+        this.experience = experience;
+    }
+
+//    public String getCompetence() {
+//        return competence;
+//    }
+
+    public void setCompetence(String competence) {
+        this.competence = competence;
+    }
+
+
+
+    public String getCurruntJob() {
+        return curruntJob;
+    }
+
+    public void setCurruntJob(String curruntJob) {
+        this.curruntJob = curruntJob;
+    }
+
+    public String getTelf() {
+        return telf;
+    }
+
+    public void setTelf(String telf) {
+        this.telf = telf;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public List<String> getexperience() {
+        return Arrays.asList(experience.split(";"));
+    }
+
+    public List<String> getcompetence() {
+        return Arrays.asList(competence.split(";"));
+    }
+
+
 
     public String getTest() {
         return test;
@@ -182,7 +266,6 @@ public class AppUser implements UserDetails {
         this.speciality = speciality;
         this.appUserRole = appUserRole;
         this.location = location;
-
     }
 
     @Override
